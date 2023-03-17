@@ -2,9 +2,9 @@ import random
 class teams:
     def __init__(self,name,players):
         self.name=name
-       
-        self.player1=players[0]
-        self.player2=players[1]
+        self.players=[]
+        for i in range(len(players)):
+            self.players.append(players[i])
 class match:
     class team:
         class player:
@@ -14,13 +14,17 @@ class match:
                 self.name=name
                 self.num_fours=0
                 self.num_sixes=0
+            def print_score(self):
+                print(self.name+":"+str(self.runs)+" from "+str(self.balls_faced)+", "+str(self.num_fours)+" fours, "+str(self.num_sixes)+" sixes")
         def __init__(self,team):
             self.score=0
             self.name=team.name
             
-            self.player1=self.player(team.player1)
-            self.player2=self.player(team.player2)
-            self.curr_bat=self.player1
+            self.players=[]
+            for i in range(len(team.players)):
+                self.players.append(self.player(team.players[i]))
+            self.striker=0
+            self.non_striker=1
     def __init__(self,team1,team2):
         self.team1=self.team(team1)
         self.team2=self.team(team2)
@@ -32,37 +36,37 @@ class match:
         for i in range(6):
             team.score+=scores[i]
             if(scores[i]==4):
-                team.curr_bat.num_fours+=1
+                team.players[team.striker].num_fours+=1
             if(scores[i]==6):
-                team.curr_bat.num_sixes+=1
-            team.curr_bat.runs+=scores[i]
-            team.curr_bat.balls_faced+=1
-            if(team.curr_bat==team.player1):
-                if(scores[i]%2==1):
-                    team.curr_bat= team.player2
-            else:
-                if(scores[i]%2==1):
-                    team.curr_bat= team.player1
+                team.players[team.striker].num_sixes+=1
+            team.players[team.striker].runs+=scores[i]
+            team.players[team.striker].balls_faced+=1
+            
+            if(scores[i]%2==1):
+                temp=team.non_striker
+                team.non_striker=team.striker
+                team.striker=temp
             if(self.over_count>20):
                 if(team.score>self.team1.score or team.score>self.team2.score):
                     return
-        if(team.curr_bat==team.player1):
-            team.curr_bat=team.player2
-        else:
-            team.curr_bat=team.player1
-        
+        temp=team.non_striker
+        team.non_striker=team.striker
+        team.striker=temp
+    
     def sim_match(self):
         for i in range(40):
             if(i<20):
                 self.next_over(self.team1)
             else:
+                if(self.team2.score>self.team1.score):
+                    return
                 self.next_over(self.team2)
         print(self.team1.name+":"+str(self.team1.score))
         print(self.team2.name+":"+str(self.team2.score))
-        print(self.team1.player1.name+":"+str(self.team1.player1.runs)+" from "+str(self.team1.player1.balls_faced)+", "+str(self.team1.player1.num_fours)+"fours, "+str(self.team1.player1.num_sixes)+"sixes,")
-        print(self.team1.player2.name+":"+str(self.team1.player2.runs)+" from "+str(self.team1.player2.balls_faced)+", "+str(self.team1.player2.num_fours)+"fours, "+str(self.team1.player2.num_sixes)+"sixes,")
-        print(self.team2.player1.name+":"+str(self.team2.player1.runs)+" from "+str(self.team2.player1.balls_faced)+", "+str(self.team2.player1.num_fours)+"fours, "+str(self.team2.player1.num_sixes)+"sixes,")
-        print(self.team2.player2.name+":"+str(self.team2.player2.runs)+" from "+str(self.team2.player2.balls_faced)+", "+str(self.team2.player2.num_fours)+"fours, "+str(self.team2.player2.num_sixes)+"sixes,")
+        for player in self.team1.players:
+            player.print_score()
+        for player in self.team2.players:
+            player.print_score()
 
 t1=teams("Team a",["Player P","Player Q"])
 t2=teams("Team b",["Player R","Player S"])
