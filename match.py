@@ -58,9 +58,9 @@ class match:
             if(i<20):
                 self.next_over(self.team1)
             else:
-                if(self.team2.score>self.team1.score):
-                    return
                 self.next_over(self.team2)
+                if(self.team2.score>self.team1.score):
+                    i=40
         print(self.team1.name+":"+str(self.team1.score))
         print(self.team2.name+":"+str(self.team2.score))
         for player in self.team1.players:
@@ -72,5 +72,8 @@ t1=teams("Team a",["Player P","Player Q"])
 t2=teams("Team b",["Player R","Player S"])
 m1=match(t1,t2)
 m1.sim_match()
-
-        
+if(__name__=="main"):
+    t1=teams("Team a",["Player P","Player Q"])
+    t2=teams("Team b",["Player R","Player S"])
+    m1=match(t1,t2)
+    m1.sim_match()  
