@@ -70,23 +70,23 @@ class Tournament:
             team_players = []
             for i in range(4):
                 player = random.choice(
-                    [p for p in self.players if p.role == 'Bowler'])
-                team_players.append(player)
-                self.players.remove(player)
-            for i in range(4):
-                player = random.choice(
                     [p for p in self.players if p.role == 'Batsman'])
-                team_players.append(player)
-                self.players.remove(player)
-            for i in range(2):
-                player = random.choice(
-                    [p for p in self.players if p.role == 'All-Rounder'])
                 team_players.append(player)
                 self.players.remove(player)
             player = random.choice(
                 [p for p in self.players if p.role == 'Wicket-Keeper'])
             team_players.append(player)
             self.players.remove(player)
+            for i in range(2):
+                player = random.choice(
+                    [p for p in self.players if p.role == 'All-Rounder'])
+                team_players.append(player)
+                self.players.remove(player)
+            for i in range(4):
+                player = random.choice(
+                    [p for p in self.players if p.role == 'Bowler'])
+                team_players.append(player)
+                self.players.remove(player)
             team_captain = random.choice(team_players)
             team.set_captain(team_captain)
             for player in team_players:
@@ -134,3 +134,4 @@ if __name__ == '__main__':
     teams = tournament.generate_teams(num_teams)
     tournament.print_teams()
     tournament.save_teams(tournament.teams, 'teams.txt')
+
