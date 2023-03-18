@@ -1,84 +1,136 @@
 import random
 
-# List of player roles
-player_roles = ['Bowler', 'Batsman', 'Wicket-Keeper', 'All-Rounder']
 
-# List of player details
-player_details = {
-    'Bowler': ['Fast Bowler', 'Spin Bowler'],
-    'Batsman': ['Left-Handed', 'Right-Handed'],
-    'Wicket-Keeper': ['Agile Keeper', 'Accurate Thrower'],
-    'All-Rounder': ['Left-Handed Batsman/Fast Bowler', 'Left-Handed Batsman/Spin Bowler', 'Right-Handed Batsman/Spin Bowler', 'Right-Handed Batsman/Fast Bowler']
-}
+class Player:
+    def __init__(self, first_name, last_name, age, role, details):
+        self.first_name = first_name
+        self.last_name = last_name
+        self.age = age
+        self.role = role
+        self.details = details
 
-# List of team names
-team_names = {
-    'Chennai Super Kings', 'Delhi Capitals', 'Kings XI Punjab', 'Kolkata Knight Riders',
-    'Mumbai Indians', 'Rajasthan Royals', 'Royal Challengers Bangalore', 'Sunrisers Hyderabad',
-    'Deccan Gladiators', 'Jaipur Jaguars', 'Pune Panthers', 'Gujarat Lions',
-    'Rising Pune Supergiant', 'Kochi Tuskers Kerala', 'Rising Pune Supergiants', 'Delhi Daredevils', 'Brisbane Heat', 'Adelaide Strikers', 'Melbourne Renegades', 'Melbourne Stars', 'Sydney Sixers',
-    'Sydney Thunder', 'Perth Scorchers', 'Hobart Hurricanes', 'Big Bash Blasters', 'Canberra Calamities'
-}
+    def __str__(self):
+        return f'{self.first_name} {self.last_name} ({self.role})'
 
-# List of player names
-first_names = ['Adam', 'John', 'Mike', 'David', 'Steve', 'Daniel', 'Brian', 'Tyler', 'Kevin', 'Jake', 'Eric', 'Tom', 'Luke', 'Jeff', 'Frank', 'Charlie', 'Scott', 'Matt', 'Jack', 'Justin', 'Aarav', 'Aryan', 'Arjun', 'Amit', 'Aniket', 'Ankit', 'Alok', 'Anuj', 'Avinash', 'Aditya', 'Akash', 'Ajit', 'Bharat', 'Bhuvan', 'Brijesh', 'Chirag', 'Chetan', 'Dhruv', 'Dinesh', 'Deepak', 'Dhananjay', 'Dev', 'Devendra', 'Dharmesh', 'Darshan', 'Eklavya', 'Gaurav', 'Gopal', 'Ganesh', 'Hemant', 'Harsh', 'Harshal', 'Hrishikesh', 'Indrajeet', 'Ishaan', 'Jatin', 'Jagdish', 'Kartik', 'Kamal', 'Karan', 'Kunal', 'Krishna', 'Kumar', 'Lalit', 'Lakshya', 'Manish', 'Mukesh', 'Mayank', 'Mahesh', 'Mohan', 'Naveen', 'Nirav', 'Nishant', 'Om', 'Omkar', 'Prashant', 'Pramod', 'Pankaj', 'Parth', 'Pranav', 'Pradeep', 'Piyush', 'Rahul', 'Rakesh', 'Rohit', 'Rajesh', 'Rajendra', 'Sagar', 'Sandeep', 'Saurabh', 'Sanjay', 'Shubham', 'Shreyas', 'Sumit', 'Sushant', 'Siddharth', 'Sudhir', 'Suraj', 'Sushil', 'Sunil', 'Tanmay', 'Tarun', 'Uday', 'Umesh', 'Vikas', 'Vivek', 'Vinay', 'Vaibhav', 'Vikrant', 'Yash', 'Yuvraj']
-last_names = ['Smith', 'Johnson', 'Brown', 'Lee', 'Wilson', 'Jones', 'Taylor', 'Clark', 'Wright', 'Walker', 'White', 'Green', 'Hall', 'Baker', 'Lewis', 'Cooper', 'Collins', 'Reed', 'Carter', 'Murphy', 'Agarwal', 'Bhagat', 'Bhargava', 'Chandra', 'Chopra', 'Choudhary', 'Dutta', 'Garg', 'Goyal', 'Gupta', 'Jain', 'Jha', 'Joshi', 'Kapoor', 'Khan', 'Kumar', 'Mahajan', 'Mehra', 'Mishra', 'Nair', 'Patel', 'Puri', 'Raj', 'Rao', 'Sahay', 'Saxena', 'Shah', 'Sharma', 'Singh', 'Sinha', 'Soni', 'Srivastava', 'Thakur', 'Trivedi', 'Verma']
 
-# List of players
-players = []
+class Team:
+    def __init__(self, name):
+        self.name = name
+        self.players = []
+        self.captain = None
 
-# Generate players with random details
-for i in range(1, 441):
-    first_name = random.choice(first_names)
-    last_name = random.choice(last_names)
-    age = random.randint(18, 40)
-    role = random.choice(player_roles)
-    details = random.choice(player_details[role])
-    player = {'Name': first_name + ' ' + last_name, 'Age': age, 'Role': role, 'Details': details}
-    players.append(player)
+    def add_player(self, player):
+        self.players.append(player)
 
-# Shuffle the list of players
-random.shuffle(players)
+    def set_captain(self, player):
+        self.captain = player
 
-# Generate 16 teams with 11 players each
-num_teams = int(input("Enter number of teams: "))
-teams = []
-for name in random.sample(team_names, num_teams):
-    team_players = []
-    for i in range(4):
-        player = random.choice([p for p in players if p['Role'] == 'Bowler'])
-        team_players.append(player)
-        players.remove(player)
-    for i in range(4):
-        player = random.choice([p for p in players if p['Role'] == 'Batsman'])
-        team_players.append(player)
-        players.remove(player)
-    for i in range(2):
-        player = random.choice([p for p in players if p['Role'] == 'All-Rounder'])
-        team_players.append(player)
-        players.remove(player)
-    player = random.choice([p for p in players if p['Role'] == 'Wicket-Keeper'])
-    team_players.append(player)
-    players.remove(player)
-    team_captain = random.choice(team_players)
-    team = {'Team Name': name, 'Players': team_players, 'Captain': team_captain}
-    teams.append(team)
+    def __str__(self):
+        output = f'{self.name}: \n'
+        output += f'Captain: {self.captain}\n\n'
+        output += '{:<20}{:<10}{:<20}{:<20}\n'.format(
+            'Name', 'Age', 'Role', 'Details')
+        for player in self.players:
+            output += '{:<20}{:<10}{:<20}{:<20}\n'.format(
+                player.first_name + ' ' + player.last_name, player.age, player.role, player.details)
+        output += '\n'
+        return output
 
-# Print the list of teams and their players
-# for team in teams:
-#     print(team['Team Name'] + ':')
-#     print('Captain: ' + team['Captain']['Name'] + '\n')
-#     print('{:<20}{:<10}{:<20}{:<20}'.format('Name', 'Age', 'Role', 'Details'))
-#     for player in team['Players']:
-#         print('{:<20}{:<10}{:<20}{:<20}'.format(player['Name'], player['Age'], player['Role'], player['Details']))
-#     print()
-    
-with open('teams.txt', 'w') as f:
-    for team in teams:
-        f.write(team['Team Name'] + ':\n')
-        f.write('Captain: ' + team['Captain']['Name'] + '\n\n')
-        f.write('{:<20}{:<10}{:<20}{:<20}\n'.format('Name', 'Age', 'Role', 'Details'))
-        for player in team['Players']:
-            f.write('{:<20}{:<10}{:<20}{:<20}\n'.format(player['Name'], player['Age'], player['Role'], player['Details']))
-        f.write('\n')
 
+class Tournament:
+
+    def __init__(self):
+        self.teams = []
+        self.players = []
+        self.player_roles = ['Bowler', 'Batsman',
+                             'Wicket-Keeper', 'All-Rounder']
+        self.player_details = {
+            'Bowler': ['Fast Bowler', 'Spin Bowler'],
+            'Batsman': ['Left-Handed', 'Right-Handed'],
+            'Wicket-Keeper': ['Agile Keeper', 'Accurate Thrower'],
+            'All-Rounder': ['Left-Handed Batsman/Fast Bowler', 'Left-Handed Batsman/Spin Bowler', 'Right-Handed Batsman/Spin Bowler', 'Right-Handed Batsman/Fast Bowler']
+        }
+
+    def add_team(self, team):
+        self.teams.append(team)
+
+    def add_player(self, player):
+        self.players.append(player)
+
+    def generate_teams(self, num_teams):
+        used_names = set()
+        for i in range(num_teams):
+            while True:
+                team_name = random.choice(self.team_names)
+                if team_name not in used_names:
+                    used_names.add(team_name)
+                    break
+            team = Team(team_name)
+            self.add_team(team)
+            team_players = []
+            for i in range(4):
+                player = random.choice(
+                    [p for p in self.players if p.role == 'Bowler'])
+                team_players.append(player)
+                self.players.remove(player)
+            for i in range(4):
+                player = random.choice(
+                    [p for p in self.players if p.role == 'Batsman'])
+                team_players.append(player)
+                self.players.remove(player)
+            for i in range(2):
+                player = random.choice(
+                    [p for p in self.players if p.role == 'All-Rounder'])
+                team_players.append(player)
+                self.players.remove(player)
+            player = random.choice(
+                [p for p in self.players if p.role == 'Wicket-Keeper'])
+            team_players.append(player)
+            self.players.remove(player)
+            team_captain = random.choice(team_players)
+            team.set_captain(team_captain)
+            for player in team_players:
+                team.add_player(player)
+
+    def print_teams(self):
+        for team in self.teams:
+            print(team)
+
+    def save_teams(self, teams, filename):
+        with open(filename, 'w') as f:
+            for team in teams:
+                f.write(team.name + ':\n')
+                f.write('Captain: ' + team.captain.first_name +
+                        ' ' + team.captain.last_name + '\n\n')
+                f.write('{:<20}{:<10}{:<20}{:<20}\n'.format(
+                    'Name', 'Age', 'Role', 'Details'))
+                for player in team.players:
+                    f.write('{:<20}{:<10}{:<20}{:<20}\n'.format(
+                        player.first_name + ' ' + player.last_name, player.age, player.role, player.details))
+                f.write('\n')
+        print(f'The teams have been saved to {filename} successfully!')
+
+    def load_data(self):
+        with open('first_names.txt') as f:
+            self.first_names = f.read().split(', ')
+        with open('last_names.txt') as f:
+            self.last_names = f.read().split(', ')
+        with open('team_names.txt') as f:
+            self.team_names = f.read().split(', ')
+        for i in range(1, 420):
+            first_name = random.choice(self.first_names)
+            last_name = random.choice(self.last_names)
+            age = random.randint(18, 40)
+            role = random.choice(self.player_roles)
+            details = random.choice(self.player_details[role])
+            player = Player(first_name, last_name, age, role, details)
+            self.add_player(player)
+
+
+if __name__ == '__main__':
+    tournament = Tournament()
+    tournament.load_data()
+    num_teams = int(input("Enter number of teams: "))
+    teams = tournament.generate_teams(num_teams)
+    tournament.print_teams()
+    tournament.save_teams(tournament.teams, 'teams.txt')
