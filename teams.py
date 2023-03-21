@@ -1,18 +1,21 @@
 import random
 
-
 class Player:
+    
     def __init__(self, first_name, last_name, age, role, details):
         self.first_name = first_name
         self.last_name = last_name
         self.age = age
         self.role = role
         self.details = details
-
+        self.runs_scored=0
+        self.balls_faced=0
+        self.wickets=0
+        self.overs=0
+        self.runs_conceded=0
     def __str__(self):
         return f'{self.first_name} {self.last_name} ({self.role})'
-
-
+    
 class Team:
     def __init__(self, name):
         self.name = name

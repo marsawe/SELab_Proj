@@ -1,5 +1,4 @@
 import random
-
 from teams import Tournament
 import numpy as np
 class teams:
@@ -8,19 +7,16 @@ class teams:
         self.players=[]
         for i in range(len(players)):
             self.players.append(players[i])
-
-
-
 class match:
     class team:
         class player:
             class batting:
                 def __init__(self,name):
+                    self.name=name
                     self.runs=0
                     self.balls_faced=0
                     self.num_fours=0
                     self.num_sixes=0
-                    self.name=name
                     self.out=False
                 def print_score(self):
                     if(self.balls_faced>0):
@@ -36,12 +32,13 @@ class match:
                     if(self.overs>0):
                         print((self.name)+":"+str(self.overs)+"-"+str(self.maidens)+"-"+str(self.runs)+"-"+str(self.wickets))
             def __init__(self,player):
-                self.batstats=self.batting(player.first_name)
-                self.bowlstats=self.bowling(player.first_name)
-                self.name=player.first_name
-                batskills={"Batsman":(-2,-10,6,2,0,3,1),"Bowler":(2,10,-6,-2,0,-3,-1),"Wicket-Keeper":(-2,-10,6,2,0,3,1),"All-Rounder":(1,-1,-1,0,0,0,1)}
+                self.name=player.first_name+" "+player.last_name
+                self.batstats=self.batting(self.name)
+                self.bowlstats=self.bowling(self.name)
+                
+                batskills={"Batsman":(-3,-10,6,2,0,3,1),"Bowler":(2,10,-6,-2,0,-3,-1),"Wicket-Keeper":(-2,-10,6,2,0,3,1),"All-Rounder":(1,-1,-1,0,0,0,1)}
                 self.batskills=batskills[player.role]
-                bowlskills={"Batsman":(-2,-10,6,2,0,3,1),"Bowler":(2,10,-6,-2,0,-3,-1),"Wicket-Keeper":(-2,-10,6,2,0,3,1),"All-Rounder":(1,-1,-1,0,0,0,1)}
+                bowlskills={"Batsman":(-3,-10,6,2,0,3,1),"Bowler":(1,10,-6,-2,0,-3,-1),"Wicket-Keeper":(-2,-10,6,2,0,3,1),"All-Rounder":(1,-1,-1,0,0,0,1)}
                 self.bowlskills=bowlskills[player.role]
         def __init__(self,team):
             self.score=0
@@ -70,7 +67,7 @@ class match:
         scores=[]
         for i in range(6):
             in_weights=(8,43, 43, 10, 1, 11, 6)
-            fin_weights=np.add(np.array(in_weights),np.array(batteam.players[batteam.striker].batskills),np.array(bowler.bowlskills))
+            fin_weights=tuple(np.add(np.add(np.array(in_weights),np.array(batteam.players[batteam.striker].batskills)),np.array(bowler.bowlskills)))
             scores.append(random.choices([-2,0,1,2,3,4,6], weights=fin_weights, k=1)[0])
             batteam.score+=scores[i]
             bowler.bowlstats.runs+=scores[i]
@@ -102,7 +99,7 @@ class match:
         batteam.non_striker=batteam.striker
         batteam.striker=temp
     
-    def sim_match(self):
+    def sim_match(self,team1,team2):
         
         while(self.over_count<20):
             n=random.choices([i for i in range(11)],weights=(1,1,1,1,0,2,2,4,4,4,4),k=1)[0]
@@ -118,14 +115,28 @@ class match:
             self.next_over(self.team2,self.team1.players[n])
             if((self.team2.score>self.team1.score) or (self.team2.wickets_lost>=10)):
                 self.over_count=40
+
+        for i in range(11):
+            team1.players[i].runs_scored+=self.team1.players[i].batstats.runs
+            team1.players[i].balls_faced+=self.team1.players[i].batstats.balls_faced
+            team1.players[i].wickets+=self.team1.players[i].bowlstats.wickets
+            team1.players[i].overs+=self.team1.players[i].bowlstats.overs
+            team1.players[i].runs_conceded+=self.team1.players[i].bowlstats.runs
+            team2.players[i].runs_scored+=self.team2.players[i].batstats.runs
+            team2.players[i].balls_faced+=self.team2.players[i].batstats.balls_faced
+            team2.players[i].wickets+=self.team2.players[i].bowlstats.wickets
+            team2.players[i].overs+=self.team2.players[i].bowlstats.overs
+            team2.players[i].runs_conceded+=self.team2.players[i].bowlstats.runs
+    def print_scores(self):
         self.team1.print_score()
         self.team2.print_bowlstats()
         self.team2.print_score()
         self.team1.print_bowlstats()
+    
 T=Tournament()
 T.load_data()
 T.generate_teams(2)
 t3=T.teams[0]
 t4=T.teams[1]
 m2=match(t3, t4)
-m2.sim_match()
+m2.sim_match(t3,t4)
