@@ -1,10 +1,16 @@
 import random
+
+from teams import Tournament
+import numpy as np
 class teams:
     def __init__(self,name,players):
         self.name=name
         self.players=[]
         for i in range(len(players)):
             self.players.append(players[i])
+
+
+
 class match:
     class team:
         class player:
@@ -29,10 +35,14 @@ class match:
                 def print_stats(self):
                     if(self.overs>0):
                         print((self.name)+":"+str(self.overs)+"-"+str(self.maidens)+"-"+str(self.runs)+"-"+str(self.wickets))
-            def __init__(self,name):
-                self.batstats=self.batting(name)
-                self.bowlstats=self.bowling(name)
-                self.name=name
+            def __init__(self,player):
+                self.batstats=self.batting(player.first_name)
+                self.bowlstats=self.bowling(player.first_name)
+                self.name=player.first_name
+                batskills={"Batsman":(-2,-10,6,2,0,3,1),"Bowler":(2,10,-6,-2,0,-3,-1),"Wicket-Keeper":(-2,-10,6,2,0,3,1),"All-Rounder":(1,-1,-1,0,0,0,1)}
+                self.batskills=batskills[player.role]
+                bowlskills={"Batsman":(-2,-10,6,2,0,3,1),"Bowler":(2,10,-6,-2,0,-3,-1),"Wicket-Keeper":(-2,-10,6,2,0,3,1),"All-Rounder":(1,-1,-1,0,0,0,1)}
+                self.bowlskills=bowlskills[player.role]
         def __init__(self,team):
             self.score=0
             self.name=team.name            
@@ -57,8 +67,11 @@ class match:
     def next_over(self,batteam,bowler):
         self.over_count+=1
         bowler.bowlstats.overs+=1
-        scores=(random.choices([-2,0,1,2,3,4,6], weights=(7,46, 46, 10, 1, 12, 6), k=6))
+        scores=[]
         for i in range(6):
+            in_weights=(8,43, 43, 10, 1, 11, 6)
+            fin_weights=np.add(np.array(in_weights),np.array(batteam.players[batteam.striker].batskills),np.array(bowler.bowlskills))
+            scores.append(random.choices([-2,0,1,2,3,4,6], weights=fin_weights, k=1)[0])
             batteam.score+=scores[i]
             bowler.bowlstats.runs+=scores[i]
             if(scores[i]==4):
@@ -90,25 +103,29 @@ class match:
         batteam.striker=temp
     
     def sim_match(self):
-        for i in range(40):
-            if(i<20):
-                self.next_over(self.team1,self.team2.players[random.randint(0, 10)])
-                if(self.team1.wickets_lost>=10):
-                    i=20
-            else:
-                self.next_over(self.team2,self.team1.players[random.randint(0, 10)])
-                if((self.team2.score>self.team1.score) or (self.team2.wickets_lost>=10)):
-                    i=40
+        
+        while(self.over_count<20):
+            n=random.choices([i for i in range(11)],weights=(1,1,1,1,0,2,2,4,4,4,4),k=1)[0]
+            while(self.team2.players[n].bowlstats.overs==4):
+                n=random.choices([i for i in range(11)],weights=(1,1,1,1,0,2,2,4,4,4,4),k=1)[0]
+            self.next_over(self.team1,self.team2.players[n])
+            if(self.team1.wickets_lost>=10):
+                self.over_count=20
+        while(self.over_count<40):
+            n=random.choices([i for i in range(11)],weights=(1,1,1,1,0,2,2,4,4,4,4),k=1)[0]
+            while(self.team1.players[n].bowlstats.overs==4):
+                n=random.choices([i for i in range(11)],weights=(1,1,1,1,0,2,2,4,4,4,4),k=1)[0]
+            self.next_over(self.team2,self.team1.players[n])
+            if((self.team2.score>self.team1.score) or (self.team2.wickets_lost>=10)):
+                self.over_count=40
         self.team1.print_score()
         self.team2.print_bowlstats()
         self.team2.print_score()
         self.team1.print_bowlstats()
-t1=teams("Team a",["Player "+str(i)for i in range(1,12,1)])
-t2=teams("Team b",["Player "+str(i)for i in range(1,12,1)])
-m1=match(t1,t2)
-m1.sim_match()
-if(__name__=="main"):
-    t1=teams("Team a",["Player "+str(i)for i in range(1,12,1)])
-    t2=teams("Team b",["Player "+str(i)for i in range(1,12,1)])
-    m1=match(t1,t2)
-    m1.sim_match()  
+T=Tournament()
+T.load_data()
+T.generate_teams(2)
+t3=T.teams[0]
+t4=T.teams[1]
+m2=match(t3, t4)
+m2.sim_match()

@@ -18,7 +18,7 @@ class Team:
         self.name = name
         self.players = []
         self.captain = None
-
+        
     def add_player(self, player):
         self.players.append(player)
 
