@@ -49,8 +49,6 @@ class Schedule:
 
     def print_schedule(self, filename):
         with open(filename, 'w') as f:
-            f.write("Match Schedule\n")
-            f.write("=" * 80 + "\n")
             date = datetime(2023, 4, 14)
             for i in range(len(self.matches)):
                 if i >= match_count:
@@ -59,24 +57,26 @@ class Schedule:
                 if i % 2 == 0:
                     date += timedelta(days=1)
                     if date.weekday() == 5 or date.weekday() == 6:
-                        time = datetime.strptime(random.choice(['18:00', '22:00']), "%H:%M").strftime("%I:%M %p")
+                        time = datetime.strptime(random.choice(['18:00', '22:00']), "%H:%M").strftime("%H%M")
                     else:
-                        time = datetime.strptime('22:00', "%H:%M").strftime("%I:%M %p")
+                        time = datetime.strptime('22:00', "%H:%M").strftime("%H%M")
 
                 venue = random.choice(self.venues)
                 while (date.strftime("%d-%m-%Y"), venue) in [(x[3], x[2]) for x in self.matches if x]:
                     venue = random.choice(self.venues)
 
                 self.matches[i] = (home, away, venue, date.strftime("%d-%m-%Y"), time)
-                f.write(f"{date.strftime('%d-%m-%Y')}, {time}, {venue}, {home} vs {away}\n")
+                f.write(f"{date.strftime('%Y-%m-%d')}, {time}, {venue}, {home} ,{away}\n")
 
 
 
 if __name__ == '__main__':
     schedule = Schedule()
-    with open('teams.txt') as f:
+    with open('tournament_team_names.txt',"r") as f:
         for team_name in f:
-            schedule.add_team(team_name.strip('\n'))
+            l=team_name.split(",")
+        for team_name in l :
+            schedule.add_team(team_name)
 
     venues = ['M. A. Chidambaram Stadium, Chennai', 'Wankhede Stadium, Mumbai', 'Eden Gardens, Kolkata', 'Arun Jaitley Stadium, Delhi', 'M. Chinnaswamy Stadium, Bengaluru', 'Sawai Mansingh Stadium, Jaipur', 'Punjab Cricket Association Stadium, Mohali', 'Rajiv Gandhi International Cricket Stadium, Hyderabad']
     for venue in venues:

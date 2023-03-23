@@ -59,6 +59,12 @@ class Tournament:
 
     def add_player(self, player):
         self.players.append(player)
+        
+    def save_team_names(self, filename):
+        with open(filename, 'w') as f:
+            f.write(self.teams[0].name)
+            for i in range(1, len(self.teams)):
+                f.write(',' + self.teams[i].name)
 
     def generate_teams(self, num_teams):
         used_names = set()
@@ -94,6 +100,7 @@ class Tournament:
             team.set_captain(team_captain)
             for player in team_players:
                 team.add_player(player)
+        self.save_team_names('tournament_team_names.txt')
 
     def print_teams(self):
         for team in self.teams:
@@ -128,13 +135,15 @@ class Tournament:
             details = random.choice(self.player_details[role])
             player = Player(first_name, last_name, age, role, details)
             self.add_player(player)
+    
+    
 
 
-if __name__ == '__main__':
-    tournament = Tournament()
-    tournament.load_data()
-    num_teams = int(input("Enter number of teams: "))
-    teams = tournament.generate_teams(num_teams)
-    tournament.print_teams()
-    tournament.save_teams(tournament.teams, 'teams.txt')
+# if __name__ == '__main__':
+#     tournament = Tournament()
+#     tournament.load_data()
+#     num_teams = int(input("Enter number of teams: "))
+#     teams = tournament.generate_teams(num_teams)
+#     tournament.print_teams()
+#     tournament.save_teams(tournament.teams, 'teams.txt')
 

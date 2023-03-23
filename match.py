@@ -133,10 +133,3 @@ class match:
         self.team2.print_score()
         self.team1.print_bowlstats()
     
-T=Tournament()
-T.load_data()
-T.generate_teams(2)
-t3=T.teams[0]
-t4=T.teams[1]
-m2=match(t3, t4)
-m2.sim_match(t3,t4)
