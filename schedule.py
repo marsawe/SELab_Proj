@@ -66,7 +66,7 @@ class Schedule:
                     venue = random.choice(self.venues)
 
                 self.matches[i] = (home, away, venue, date.strftime("%d-%m-%Y"), time)
-                f.write(f"{date.strftime('%Y-%m-%d')}, {time}, {venue}, {home} ,{away}\n")
+                f.write(f"{date.strftime('%d-%m-%Y')}, {time}, {venue}, {home} ,{away}\n")
 
 
 
