@@ -170,8 +170,8 @@ if __name__ == '__main__':
     
     
     #generating a match and creating the the scorecard
-    for i in range(1,29) :
-        simulate_match(i)
+    for match_no in range(1,29) :
+        simulate_match(match_no)
     show_points_table()
     
     
