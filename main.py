@@ -110,8 +110,8 @@ def show_points_table() :
     cursor=connector.cursor()
     cursor.execute("select * from points_table order by points desc")
     table=cursor.fetchall()
-    for row in table :
-        print(row)
+    cursor.close()
+    return table
     
 
 if __name__ == '__main__':
@@ -125,54 +125,123 @@ if __name__ == '__main__':
     T.load_data()
     T.generate_teams(8)
     
-    #generating Schedule and pushing it to sql database
-    schedule=Schedule()
-    
-    #creating schedule table in database
-    cursor.execute("drop table if exists schedule")
-    cursor.execute("create table schedule(Match_no int(2) , date varchar(15), time varchar(10),stadium varchar(50) , venue varchar(20), team1 varchar(30), team2 varchar(30), primary key(Match_no))")
-    #creating points table in database
-    cursor.execute("drop table if exists points_table")
-    cursor.execute("create table points_table(team varchar(30),played int(2),won int(2),lost int(2),drawn int(2),points int(2),last_5_matches varchar(5))")
     
     
-    with open('tournament_team_names.txt',"r") as f:
-        for team_name in f:
-            l=team_name.split(",")
-        for team_name in l :
-            schedule.add_team(team_name)
-            cursor.execute("insert into points_table(team,played,won,lost,drawn,points,last_5_matches) values(\'{}\',0,0,0,0,0,\'\')".format(team_name))
-
-    venues = ['M. A. Chidambaram Stadium, Chennai', 'Wankhede Stadium, Mumbai', 'Eden Gardens, Kolkata', 'Arun Jaitley Stadium, Delhi', 'M. Chinnaswamy Stadium, Bengaluru', 'Sawai Mansingh Stadium, Jaipur', 'Punjab Cricket Association Stadium, Mohali', 'Rajiv Gandhi International Cricket Stadium, Hyderabad']
-    for venue in venues:
-        schedule.add_venue(venue)
-    schedule.generate_schedule()
-    schedule.print_schedule("schedule.txt")
-    
-    
-    with open("schedule.txt","r") as f :
-        i=1
-        for x in f : 
-            l=x.split(",")
+    cursor.execute("drop table if exists match_id")
+    cursor.execute("create table match_id(match_no int(2) primary key)")
+    cursor.execute("insert into match_id values(0)")
+    while(True) :
+        print("Enter 1 to generate schedule\nEnter 2 to simulate a match\nEnter 3 to show points table\nEnter 4 to see the schedule\nEnter 5 to see scorecard of a particular match\nEnter 6 to exit")
+        choice=int(input())
+        if choice==1 :
+            #generating Schedule and pushing it to sql database
+            schedule=Schedule()
             
-            date=l[0].strip()
-            time=l[1].strip()
-            stadium=l[2].strip()
-            venue=l[3].strip()
-            team1=l[4].strip()
-            team2=l[5].strip("\n")
-            sql="INSERT INTO schedule VALUES ({},\'{}\',\'{}\',\'{}\',\'{}\',\'{}\',\'{}\')".format(i,date,time,stadium,venue,team1,team2)
-            cursor.execute(sql)
+            #creating schedule table in database
+            cursor.execute("drop table if exists schedule")
+            cursor.execute("create table schedule(Match_no int(2) , date varchar(15), time varchar(10),stadium varchar(50) , venue varchar(20), team1 varchar(30), team2 varchar(30), primary key(Match_no))")
+            #creating points table in database
+            cursor.execute("drop table if exists points_table")
+            cursor.execute("create table points_table(team varchar(30),played int(2),won int(2),lost int(2),drawn int(2),points int(2),last_5_matches varchar(5))")
+            
+            
+            with open('tournament_team_names.txt',"r") as f:
+                for team_name in f:
+                    l=team_name.split(",")
+                for team_name in l :
+                    schedule.add_team(team_name)
+                    cursor.execute("insert into points_table(team,played,won,lost,drawn,points,last_5_matches) values(\'{}\',0,0,0,0,0,\'\')".format(team_name))
+
+            venues = ['M. A. Chidambaram Stadium, Chennai', 'Wankhede Stadium, Mumbai', 'Eden Gardens, Kolkata', 'Arun Jaitley Stadium, Delhi', 'M. Chinnaswamy Stadium, Bengaluru', 'Sawai Mansingh Stadium, Jaipur', 'Punjab Cricket Association Stadium, Mohali', 'Rajiv Gandhi International Cricket Stadium, Hyderabad']
+            for venue in venues:
+                schedule.add_venue(venue)
+            schedule.generate_schedule()
+            schedule.print_schedule("schedule.txt")
+            
+            
+            with open("schedule.txt","r") as f :
+                i=1
+                for x in f : 
+                    l=x.split(",")
+                    
+                    date=l[0].strip()
+                    time=l[1].strip()
+                    stadium=l[2].strip()
+                    venue=l[3].strip()
+                    team1=l[4].strip()
+                    team2=l[5].strip("\n")
+                    sql="INSERT INTO schedule VALUES ({},\'{}\',\'{}\',\'{}\',\'{}\',\'{}\',\'{}\')".format(i,date,time,stadium,venue,team1,team2)
+                    cursor.execute(sql)
+                    connector.commit()
+                    i+=1
+            cursor.close()
+            #End of creating a schedule table in database
+            
+        elif choice==2 :
+            cursor=connector.cursor()
+            n=int(input("Enter the the number of matches you want to simulate : "))
+            cursor.execute("select max(match_no) from match_id")
+            match_id=cursor.fetchone()[0]
+            cursor.execute("Update match_id set match_no=match_no+{}".format(n))
             connector.commit()
-            i+=1
-    cursor.close()
-    #End of creating a schedule table in database
-    
-    
-    #generating a match and creating the the scorecard
-    for match_no in range(1,29) :
-        simulate_match(match_no)
-    show_points_table()
+            for match_num in range(match_id+1,match_id+n+1) :
+                simulate_match(match_num)
+            cursor.close()
+        elif choice==3 :
+            points_table=show_points_table()
+            for row in points_table:
+                print(row)
+        elif choice==4 :
+            cursor=connector.cursor()
+            cursor.execute("select * from schedule")
+            schedule=cursor.fetchall()
+            for row in schedule :
+                print(row)
+            cursor.close()
+        elif choice==5 :
+            cursor=connector.cursor()
+            match_num=int(input("Enter the match number : "))
+            cursor.execute("select SUM(runs) from match_{}_bat1".format(match_num))
+            score=cursor.fetchone()[0]
+            cursor.execute("select SUM(wickets) from match_{}_bowl2".format(match_num))
+            wickets=cursor.fetchone()[0]
+            cursor.execute("Select team1,team2 from schedule where match_no={}".format(match_num))
+            team1,team2=cursor.fetchone()
+            print("Scorecard of match {} between {} and {}".format(match_num,team1,team2))
+            print(team1," : ",score,"/",wickets)
+            print("Batting : ")
+            cursor.execute("select * from match_{}_bat1".format(match_num))
+            bat1=cursor.fetchall()
+            for row in bat1 :
+                print(row)
+            print("Bowling : ")
+            cursor.execute("select * from match_{}_bowl2".format(match_num))
+            bowl2=cursor.fetchall()
+            for row in bowl2 :
+                print(row)
+            print("----------------------")
+            cursor.execute("select SUM(runs) from match_{}_bat2".format(match_num))
+            score=cursor.fetchone()[0]
+            cursor.execute("select SUM(wickets) from match_{}_bowl1".format(match_num))
+            wickets=cursor.fetchone()[0]
+            print(team2," : ",score,"/",wickets)
+            print("Batting : ")
+            cursor.execute("select * from match_{}_bat2".format(match_num))
+            bat2=cursor.fetchall()
+            for row in bat2 :
+                print(row)
+            print("Bowling : ")
+            cursor.execute("select * from match_{}_bowl1".format(match_num))
+            bowl1=cursor.fetchall()
+            for row in bowl1 :
+                print(row)
+            cursor.close()
+        elif choice==6 :
+            exit()
+            
+            
+            
+        
     
     
     
