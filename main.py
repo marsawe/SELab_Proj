@@ -3,7 +3,8 @@ from match import match
 from schedule import Schedule
 import mysql.connector 
 
-
+#this function is used to simulate a match . The simulation is done by calling the match class and passing the teams as parameters
+#also the simulation is done on an over by over basis.
 def simulate_match(id):
     cursor=connector.cursor()
     cursor.execute("select team1 , team2 from schedule where Match_no={}".format(id))
@@ -19,7 +20,8 @@ def simulate_match(id):
     
     m=match(team1,team2)
     m.sim_match(team1,team2)
-    # m.print_scores()
+    
+    #Creating the in sql for storing the match data
     
     cursor.execute("drop table if exists match_{}_bat1".format(id))
     cursor.execute("Create table match_{}_bat1 (batting_position int(2) PRIMARY KEY AUTO_INCREMENT,batter varchar(30),runs int(3),balls int(3),fours int(2),sixes int(2),strike_rate float)".format(id))
@@ -34,7 +36,7 @@ def simulate_match(id):
     cursor.execute("Create table match_{}_bowl1 (bowler_no int(2) AUTO_INCREMENT PRIMARY KEY,bowler varchar(30),overs int(2),runs int(3),wickets int(2),economy float)".format(id))
     
 
-    # team 1 batting stat
+    # team 1 batting stat and pushing them to the database
     for player in m.team1.players :
         if(player.batstats.balls_faced>0):
             strike_rate=round(player.batstats.runs/player.batstats.balls_faced*100,2)
@@ -46,7 +48,7 @@ def simulate_match(id):
             cursor.execute("insert into match_{}_bowl1(bowler,overs,runs,wickets,economy) values(\'{}\',{},{},{},{})".format(id,player.name,player.bowlstats.overs,player.bowlstats.runs,player.bowlstats.wickets,player.bowlstats.runs/player.bowlstats.overs))
             connector.commit()
     
-    #team 2 batting stat
+    #team 2 batting stat and pushing them to the database
     for player in m.team2.players :
         if(player.batstats.balls_faced>0):
             strike_rate=round(player.batstats.runs/player.batstats.balls_faced*100,2)
@@ -59,7 +61,7 @@ def simulate_match(id):
             connector.commit()
             
     
-    #updating points table
+    #updating points table based on the result of the match
     if(m.team1.score > m.team2.score) : 
         cursor.execute("select last_5_matches from points_table where team=\'{}\'".format(team1.name))
         team1_matches=cursor.fetchone()[0]
@@ -105,7 +107,8 @@ def simulate_match(id):
         team2_matches="D"+team2_matches
         cursor.execute("update points_table set played=played+1 , drawn=drawn+1 , points=points+1 , last_5_matches=\'{}\' where team=\'{}\'".format(team2_matches,team2.name))
         connector.commit()
-    
+
+#function to show the points table
 def show_points_table() :
     cursor=connector.cursor()
     cursor.execute("select * from points_table order by points desc")
@@ -114,10 +117,16 @@ def show_points_table() :
     return table
     
 
+
 if __name__ == '__main__':
+    
+    #connecting to mysql database .User will be prompted to enter password for mysql
     passcode=input("Enter password for mysql : ")
     connector=mysql.connector.connect(user='root',password=passcode,host='localhost',database='cricket')
     cursor = connector.cursor()
+    
+    #creating database if they don't exist
+    cursor.execute("drop database if exists cricket")
     cursor.execute("create database if not exists cricket")
     cursor.execute("use cricket")
     
@@ -130,6 +139,8 @@ if __name__ == '__main__':
     cursor.execute("drop table if exists match_id")
     cursor.execute("create table match_id(match_no int(2) primary key)")
     cursor.execute("insert into match_id values(0)")
+    
+    #command line interface
     while(True) :
         print("Enter 1 to generate schedule\nEnter 2 to simulate a match\nEnter 3 to show points table\nEnter 4 to see the schedule\nEnter 5 to see scorecard of a particular match\nEnter 6 to exit")
         choice=int(input())
