@@ -238,24 +238,3 @@ if __name__ == '__main__':
             cursor.close()
         elif choice==6 :
             exit()
-            
-            
-            
-        
-    
-    
-    
-    
-    
-    
-        
-        
-    
-                
-        
-    
-    
-    
-    
-    
-   
