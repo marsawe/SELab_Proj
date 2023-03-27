@@ -1,10 +1,13 @@
 import random
 from teams import Tournament
 import numpy as np
-
+#Class to store and generate relevant details for a match
 class match:
+    #Class to store and generate relevant match details for a team
     class team:
+        #Class to store and generate relevant player details for a match
         class player:
+            #Stats are separated into batting and bowling stats for clarity
             class batting:
                 def __init__(self,name):
                     self.name=name
@@ -45,6 +48,7 @@ class match:
             self.non_striker=1
             self.wickets_lost=0
             self.curr_bowler=10
+        #Function 
         def print_score(self):
             print(self.name+":"+str(self.score)+"/"+str(self.wickets_lost))
             for player in self.players:
