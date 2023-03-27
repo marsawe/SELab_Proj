@@ -1,12 +1,7 @@
 import random
 from teams import Tournament
 import numpy as np
-class teams:
-    def __init__(self,name,players):
-        self.name=name
-        self.players=[]
-        for i in range(len(players)):
-            self.players.append(players[i])
+
 class match:
     class team:
         class player:
