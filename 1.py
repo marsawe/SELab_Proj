@@ -5,6 +5,13 @@ from schedule import Schedule
 from functools import partial
 import mysql.connector
 
+def validateLogin(username, passcode):
+    connector=mysql.connector.connect(user=username.get(),password=passcode.get(),host='localhost')
+    global cursor
+    cursor = connector.cursor()
+    print ("Login success")
+    return
+
 def Generate(clicked):
     #connecting to mysql database .User will be prompted to enter password for mysql
     # passcode=input("Enter password for mysql : ")
@@ -68,27 +75,24 @@ def Generate(clicked):
                 i+=1
         cursor.close()
 
+if __name__ == '__main__':
+        
+    tkWindow = Tk()
+    tkWindow.title="Cricket Tournament"
+    tkWindow.geometry("500x500")
+        
+    usernameLabel = Label(tkWindow, text="SQL User Name").grid(row=0, column=0)
+    username = StringVar()
+    usernameEntry = Entry(tkWindow, textvariable=username).grid(row=0, column=1)  
 
-    
-root = Tk()
-root.title="Cricket Tournament"
-root.geometry("500x500")
-    
-Output = Text(root, width=100, height=100)
-Output.grid(row=0, column=1)
-Output.insert(END, "Enter the mySQL password for the database")
-    
-e = Entry(root, width=50)
-e.grid(row=0, column=0)
-    
-passcode=e.get()
-connector=mysql.connector.connect(user='root',password=passcode,host='localhost',database='cricket')
-cursor = connector.cursor()
-    
-clicked=StringVar()
-clicked.set("Generate Tournament Details and Schedule")
-button1 = Button(root, text="Create Tournament", command=partial(Generate,clicked))
-    
-root.mainloop()
-    
-    
+    #password label and password entry box
+    passwordLabel = Label(tkWindow,text="SQL Password").grid(row=1, column=0)  
+    passcode = StringVar()
+    passwordEntry = Entry(tkWindow, textvariable=passcode, show='*').grid(row=1, column=1)  
+   
+    validateLogin = partial(validateLogin, username, passcode)
+    loginButton = Button(tkWindow, text="Login", command=validateLogin).grid(row=4, column=0)  
+        
+    tkWindow.mainloop()
+        
+        
