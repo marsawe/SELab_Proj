@@ -39,8 +39,22 @@ class Team:
                 player.first_name + ' ' + player.last_name, player.age, player.role, player.details)
         output += '\n'
         return output
-
-
+    def top_scorer(self):
+        top_runs=0
+        
+        for player in self.players:
+            if(player.runs_scored>top_runs):
+                top_runs=player.runs_scored
+                top_scorer=player
+        return top_scorer
+    def top_wickettaker(self):
+        top_wickets=0
+        
+        for player in self.players:
+            if(player.wickets>top_wickets):
+                top_wickets=player.wickets
+                top_wickettaker=player
+        return top_wickettaker
 class Tournament:
 
     def __init__(self):

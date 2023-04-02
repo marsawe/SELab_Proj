@@ -10,6 +10,7 @@ def validateLogin(username, passcode):
     global cursor
     cursor = connector.cursor()
     print ("Login success")
+    
     return
 
 def Generate(clicked):
