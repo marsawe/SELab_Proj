@@ -1,5 +1,5 @@
 import random
-
+import numpy as np
 class Player:
     
     def __init__(self, first_name, last_name, age, role, details):
@@ -21,7 +21,8 @@ class Team:
         self.name = name
         self.players = []
         self.captain = None
-        
+        self.runs=0
+        self.wickets=0
     def add_player(self, player):
         self.players.append(player)
 
@@ -136,9 +137,20 @@ class Tournament:
             player = Player(first_name, last_name, age, role, details)
             self.add_player(player)
     
-    
-
-
+    def calc_stats(self):
+        top5runs, top5wickets = {},{}
+        for team in self.teams:
+            for player in team:
+                top5runs[player.first_name+player.last_name]=player.runs_scored
+                top5wickets[player.first_name+player.last_name]=player.wickets
+        run_names=list(top5runs.keys())
+        runs=list(top5runs.values())
+        sorted_indices=np.argsort(runs)
+        self.sorted_runs={run_names[i]:runs[i] for i in sorted_indices[-6:-1]}
+        wicket_names=list(top5wickets.keys())
+        wickets=list(top5wickets.values())
+        sorted_indices=np.argsort(wickets)
+        self.sorted_wickets={wicket_names[i]:runs[i] for i in sorted_indices[-6:-1]}
 # if __name__ == '__main__':
 #     tournament = Tournament()
 #     tournament.load_data()
@@ -146,4 +158,3 @@ class Tournament:
 #     teams = tournament.generate_teams(num_teams)
 #     tournament.print_teams()
 #     tournament.save_teams(tournament.teams, 'teams.txt')
-
