@@ -1,13 +1,18 @@
 import random
 from teams import Tournament
 import numpy as np
-#Class to store and generate relevant details for a match
+class teams:
+    def __init__(self,name,players):
+        self.name=name
+        self.players=[]
+        for i in range(len(players)):
+            self.players.append(players[i])
 class match:
-    #Class to store and generate relevant match details for a team
+    #Class to store match data for a team
     class team:
-        #Class to store and generate relevant player details for a match
+        #Class to store match data for a player
         class player:
-            #Stats are separated into batting and bowling stats for clarity
+            #Separating player stats into batting and bowling stats for clarity
             class batting:
                 def __init__(self,name):
                     self.name=name
@@ -48,7 +53,7 @@ class match:
             self.non_striker=1
             self.wickets_lost=0
             self.curr_bowler=10
-        #Function 
+        #Function to print a player's stats(Only used for testing)
         def print_score(self):
             print(self.name+":"+str(self.score)+"/"+str(self.wickets_lost))
             for player in self.players:
@@ -126,6 +131,10 @@ class match:
             team2.players[i].wickets+=self.team2.players[i].bowlstats.wickets
             team2.players[i].overs+=self.team2.players[i].bowlstats.overs
             team2.players[i].runs_conceded+=self.team2.players[i].bowlstats.runs
+        team1.runs+=self.team1.score
+        team1.wickets+=self.team2.wickets_lost
+        team2.runs+=self.team1.score
+        team2.wickets+=self.team2.wickets_lost
     def print_scores(self):
         self.team1.print_score()
         self.team2.print_bowlstats()
