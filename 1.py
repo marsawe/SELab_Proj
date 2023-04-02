@@ -71,7 +71,7 @@ def Generate(clicked):
                 team2=l[5].strip("\n")
                 sql="INSERT INTO schedule VALUES ({},\'{}\',\'{}\',\'{}\',\'{}\',\'{}\',\'{}\')".format(i,date,time,stadium,venue,team1,team2)
                 cursor.execute(sql)
-                connector.commit()
+                mysql.connector.commit()
                 i+=1
         cursor.close()
 
