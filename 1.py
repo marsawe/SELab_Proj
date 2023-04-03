@@ -10,6 +10,17 @@ def validateLogin(username, passcode):
     global cursor
     cursor = connector.cursor()
     print ("Login success")
+    
+    
+    #creating database if they don't exist
+    cursor.execute("drop database if exists cricket")
+    cursor.execute("create database if not exists cricket")
+    cursor.execute("use cricket")
+    
+    cursor.execute("drop table if exists match_id")
+    cursor.execute("create table match_id(match_no int(2) primary key)")
+    cursor.execute("insert into match_id values(0)")
+    
     return
 
 def Generate(clicked):
@@ -18,10 +29,8 @@ def Generate(clicked):
     # connector=mysql.connector.connect(user='root',password=passcode,host='localhost',database='cricket')
     # cursor = connector.cursor()
     
-    #creating database if they don't exist
-    cursor.execute("drop database if exists cricket")
-    cursor.execute("create database if not exists cricket")
-    cursor.execute("use cricket")
+    
+    
     
     T=Tournament()
     T.load_data()
@@ -29,9 +38,7 @@ def Generate(clicked):
     
     
     
-    cursor.execute("drop table if exists match_id")
-    cursor.execute("create table match_id(match_no int(2) primary key)")
-    cursor.execute("insert into match_id values(0)")
+    
     
     #generating Schedule and pushing it to sql database
     schedule=Schedule()
@@ -78,9 +85,10 @@ def Generate(clicked):
 if __name__ == '__main__':
         
     tkWindow = Tk()
-    tkWindow.title="Cricket Tournament"
+    tkWindow.title="Cricket Tournament Login Page"
     tkWindow.geometry("500x500")
-        
+    
+    #username label and text entry box
     usernameLabel = Label(tkWindow, text="SQL User Name").grid(row=0, column=0)
     username = StringVar()
     usernameEntry = Entry(tkWindow, textvariable=username).grid(row=0, column=1)  

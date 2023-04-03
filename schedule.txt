@@ -1,28 +1,6 @@
-15-04-2023, 2200, M. Chinnaswamy Stadium, Bengaluru, Rising Pune Supergiants ,Canberra Calamities
-15-04-2023, 2200, M. A. Chidambaram Stadium, Chennai, Pune Panthers ,Deccan Gladiators
-16-04-2023, 1800, M. A. Chidambaram Stadium, Chennai, Chennai Super Kings ,Mumbai Indians
-16-04-2023, 1800, Rajiv Gandhi International Cricket Stadium, Hyderabad, Melbourne Stars ,Rajasthan Royals
-17-04-2023, 2200, Eden Gardens, Kolkata, Deccan Gladiators ,Rising Pune Supergiants
-17-04-2023, 2200, Rajiv Gandhi International Cricket Stadium, Hyderabad, Mumbai Indians ,Canberra Calamities
-18-04-2023, 2200, Sawai Mansingh Stadium, Jaipur, Rajasthan Royals ,Pune Panthers
-18-04-2023, 2200, Wankhede Stadium, Mumbai, Melbourne Stars ,Chennai Super Kings
-19-04-2023, 2200, Eden Gardens, Kolkata, Rising Pune Supergiants ,Mumbai Indians
-19-04-2023, 2200, Arun Jaitley Stadium, Delhi, Deccan Gladiators ,Rajasthan Royals
-20-04-2023, 2200, Wankhede Stadium, Mumbai, Canberra Calamities ,Melbourne Stars
-20-04-2023, 2200, Punjab Cricket Association Stadium, Mohali, Pune Panthers ,Chennai Super Kings
-21-04-2023, 2200, Sawai Mansingh Stadium, Jaipur, Rajasthan Royals ,Rising Pune Supergiants
-21-04-2023, 2200, M. A. Chidambaram Stadium, Chennai, Melbourne Stars ,Mumbai Indians
-22-04-2023, 1800, Wankhede Stadium, Mumbai, Chennai Super Kings ,Deccan Gladiators
-22-04-2023, 1800, Rajiv Gandhi International Cricket Stadium, Hyderabad, Pune Panthers ,Canberra Calamities
-23-04-2023, 1800, Wankhede Stadium, Mumbai, Rising Pune Supergiants ,Melbourne Stars
-23-04-2023, 1800, M. Chinnaswamy Stadium, Bengaluru, Rajasthan Royals ,Chennai Super Kings
-24-04-2023, 2200, Wankhede Stadium, Mumbai, Mumbai Indians ,Pune Panthers
-24-04-2023, 2200, Sawai Mansingh Stadium, Jaipur, Deccan Gladiators ,Canberra Calamities
-25-04-2023, 2200, Sawai Mansingh Stadium, Jaipur, Chennai Super Kings ,Rising Pune Supergiants
-25-04-2023, 2200, Arun Jaitley Stadium, Delhi, Pune Panthers ,Melbourne Stars
-26-04-2023, 2200, Sawai Mansingh Stadium, Jaipur, Canberra Calamities ,Rajasthan Royals
-26-04-2023, 2200, M. A. Chidambaram Stadium, Chennai, Deccan Gladiators ,Mumbai Indians
-27-04-2023, 2200, M. A. Chidambaram Stadium, Chennai, Rising Pune Supergiants ,Pune Panthers
-27-04-2023, 2200, Arun Jaitley Stadium, Delhi, Chennai Super Kings ,Canberra Calamities
-28-04-2023, 2200, Rajiv Gandhi International Cricket Stadium, Hyderabad, Melbourne Stars ,Deccan Gladiators
-28-04-2023, 2200, Eden Gardens, Kolkata, Rajasthan Royals ,Mumbai Indians
+15-04-2023, 2200, Arun Jaitley Stadium, Delhi,  ,Big Bash Blasters
+15-04-2023, 2200, M. A. Chidambaram Stadium, Chennai, Brisbane Heat ,Chennai Super Kings
+16-04-2023, 1800, Rajiv Gandhi International Cricket Stadium, Hyderabad, Chennai Super Kings ,
+16-04-2023, 1800, Arun Jaitley Stadium, Delhi, Brisbane Heat ,Big Bash Blasters
+17-04-2023, 2200, Wankhede Stadium, Mumbai,  ,Brisbane Heat
+17-04-2023, 2200, Sawai Mansingh Stadium, Jaipur, Chennai Super Kings ,Big Bash Blasters
