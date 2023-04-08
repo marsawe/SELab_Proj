@@ -154,9 +154,9 @@ class Tournament:
     def calc_stats(self):
         top5runs, top5wickets = {},{}
         for team in self.teams:
-            for player in team:
-                top5runs[player.first_name+player.last_name]=player.runs_scored
-                top5wickets[player.first_name+player.last_name]=player.wickets
+            for player in team.players:
+                top5runs[player.first_name+" "+player.last_name]=player.runs_scored
+                top5wickets[player.first_name+" "+player.last_name]=player.wickets
         run_names=list(top5runs.keys())
         runs=list(top5runs.values())
         sorted_indices=np.argsort(runs)
@@ -164,7 +164,7 @@ class Tournament:
         wicket_names=list(top5wickets.keys())
         wickets=list(top5wickets.values())
         sorted_indices=np.argsort(wickets)
-        self.sorted_wickets={wicket_names[i]:runs[i] for i in sorted_indices[-6:-1]}
+        self.sorted_wickets={wicket_names[i]:wickets[i] for i in sorted_indices[-6:-1]}
 # if __name__ == '__main__':
 #     tournament = Tournament()
 #     tournament.load_data()
