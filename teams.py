@@ -160,11 +160,11 @@ class Tournament:
         run_names=list(top5runs.keys())
         runs=list(top5runs.values())
         sorted_indices=np.argsort(runs)
-        self.sorted_runs={run_names[i]:runs[i] for i in sorted_indices[-6:-1]}
+        self.sorted_runs={run_names[i]:runs[i] for i in sorted_indices[-5:]}
         wicket_names=list(top5wickets.keys())
         wickets=list(top5wickets.values())
         sorted_indices=np.argsort(wickets)
-        self.sorted_wickets={wicket_names[i]:wickets[i] for i in sorted_indices[-6:-1]}
+        self.sorted_wickets={wicket_names[i]:wickets[i] for i in sorted_indices[-5:]}
 # if __name__ == '__main__':
 #     tournament = Tournament()
 #     tournament.load_data()
