@@ -1,28 +1,21 @@
-15-04-2023, 1800, Sawai Mansingh Stadium, Jaipur, Rising Pune Supergiants ,Melbourne Stars
-15-04-2023, 1800, Arun Jaitley Stadium, Delhi, Gujarat Lions ,Sydney Thunder
-16-04-2023, 2200, M. Chinnaswamy Stadium, Bengaluru, Pune Panthers ,Kings XI Punjab
-16-04-2023, 2200, Rajiv Gandhi International Cricket Stadium, Hyderabad, Hobart Hurricanes ,Sunrisers Hyderabad
-17-04-2023, 2200, M. A. Chidambaram Stadium, Chennai, Sydney Thunder ,Rising Pune Supergiants
-17-04-2023, 2200, Punjab Cricket Association Stadium, Mohali, Kings XI Punjab ,Melbourne Stars
-18-04-2023, 2200, M. Chinnaswamy Stadium, Bengaluru, Sunrisers Hyderabad ,Gujarat Lions
-18-04-2023, 2200, Punjab Cricket Association Stadium, Mohali, Hobart Hurricanes ,Pune Panthers
-19-04-2023, 2200, Arun Jaitley Stadium, Delhi, Rising Pune Supergiants ,Kings XI Punjab
-19-04-2023, 2200, M. A. Chidambaram Stadium, Chennai, Sydney Thunder ,Sunrisers Hyderabad
-20-04-2023, 2200, Arun Jaitley Stadium, Delhi, Melbourne Stars ,Hobart Hurricanes
-20-04-2023, 2200, M. Chinnaswamy Stadium, Bengaluru, Gujarat Lions ,Pune Panthers
-21-04-2023, 2200, Rajiv Gandhi International Cricket Stadium, Hyderabad, Sunrisers Hyderabad ,Rising Pune Supergiants
-21-04-2023, 2200, M. Chinnaswamy Stadium, Bengaluru, Hobart Hurricanes ,Kings XI Punjab
-22-04-2023, 2200, Wankhede Stadium, Mumbai, Pune Panthers ,Sydney Thunder
-22-04-2023, 2200, Rajiv Gandhi International Cricket Stadium, Hyderabad, Gujarat Lions ,Melbourne Stars
-23-04-2023, 1800, M. A. Chidambaram Stadium, Chennai, Rising Pune Supergiants ,Hobart Hurricanes
-23-04-2023, 1800, Punjab Cricket Association Stadium, Mohali, Sunrisers Hyderabad ,Pune Panthers
-24-04-2023, 2200, Eden Gardens, Kolkata, Kings XI Punjab ,Gujarat Lions
-24-04-2023, 2200, Sawai Mansingh Stadium, Jaipur, Sydney Thunder ,Melbourne Stars
-25-04-2023, 2200, Rajiv Gandhi International Cricket Stadium, Hyderabad, Pune Panthers ,Rising Pune Supergiants
-25-04-2023, 2200, Punjab Cricket Association Stadium, Mohali, Gujarat Lions ,Hobart Hurricanes
-26-04-2023, 2200, Wankhede Stadium, Mumbai, Melbourne Stars ,Sunrisers Hyderabad
-26-04-2023, 2200, Punjab Cricket Association Stadium, Mohali, Sydney Thunder ,Kings XI Punjab
-27-04-2023, 2200, Sawai Mansingh Stadium, Jaipur, Rising Pune Supergiants ,Gujarat Lions
-27-04-2023, 2200, M. Chinnaswamy Stadium, Bengaluru, Pune Panthers ,Melbourne Stars
-28-04-2023, 2200, Wankhede Stadium, Mumbai, Hobart Hurricanes ,Sydney Thunder
-28-04-2023, 2200, Punjab Cricket Association Stadium, Mohali, Sunrisers Hyderabad ,Kings XI Punjab
+15-04-2023, 2200, Wankhede Stadium, Mumbai, Sydney Thunder, Jaipur Jaguars
+15-04-2023, 2200, Arun Jaitley Stadium, Delhi, Kochi Tuskers Kerala, Canberra Calamities
+16-04-2023, 2200, Punjab Cricket Association Stadium, Mohali, Chennai Super Kings, Sydney Sixers
+16-04-2023, 2200, Wankhede Stadium, Mumbai, Canberra Calamities, Sydney Thunder
+17-04-2023, 2200, Wankhede Stadium, Mumbai, Sydney Sixers, Jaipur Jaguars
+17-04-2023, 2200, Arun Jaitley Stadium, Delhi, Melbourne Renegades, Kochi Tuskers Kerala
+18-04-2023, 2200, M. A. Chidambaram Stadium, Chennai, Sydney Thunder, Sydney Sixers
+18-04-2023, 2200, M. Chinnaswamy Stadium, Bengaluru, Canberra Calamities, Melbourne Renegades
+19-04-2023, 2200, Wankhede Stadium, Mumbai, Jaipur Jaguars, Chennai Super Kings
+19-04-2023, 2200, M. A. Chidambaram Stadium, Chennai, Melbourne Renegades, Sydney Thunder
+20-04-2023, 2200, Rajiv Gandhi International Cricket Stadium, Hyderabad, Chennai Super Kings, Sydney Sixers
+20-04-2023, 2200, Sawai Mansingh Stadium, Jaipur, Kochi Tuskers Kerala, Canberra Calamities
+21-04-2023, 2200, Sawai Mansingh Stadium, Jaipur, Sydney Thunder, Chennai Super Kings
+21-04-2023, 2200, Rajiv Gandhi International Cricket Stadium, Hyderabad, Melbourne Renegades, Kochi Tuskers Kerala
+22-04-2023, 2200, Eden Gardens, Kolkata, Sydney Sixers, Jaipur Jaguars
+22-04-2023, 2200, Wankhede Stadium, Mumbai, Kochi Tuskers Kerala, Sydney Thunder
+23-04-2023, 2200, Eden Gardens, Kolkata, Jaipur Jaguars, Chennai Super Kings
+23-04-2023, 2200, Wankhede Stadium, Mumbai, Canberra Calamities, Melbourne Renegades
+24-04-2023, 2200, Punjab Cricket Association Stadium, Mohali, Sydney Thunder, Jaipur Jaguars
+24-04-2023, 2200, Arun Jaitley Stadium, Delhi, Kochi Tuskers Kerala, Canberra Calamities
+25-04-2023, 2200, Sawai Mansingh Stadium, Jaipur, Chennai Super Kings, Sydney Sixers

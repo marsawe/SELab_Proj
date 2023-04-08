@@ -11,6 +11,7 @@ def simulate_match(id):
     # cursor=connector.cursor()
     cursor.execute("select team1 , team2 from schedule where Match_no={}".format(id))
     teams=cursor.fetchone()
+    
     team1=teams[0]
     team2=teams[1]
     
@@ -131,7 +132,7 @@ class tkinterApp(tk.Tk):
         
         # iterating through a tuple consisting
         # of the different page layouts
-        for F in (login_page,gen_tourn,mainmenu,team_stats,tour_stats) : 
+        for F in (login_page,gen_tourn,mainmenu,team_stats,tour_stats,show_team) : 
             frame = F(container, self)
   
             # initializing frame of that object from
@@ -212,7 +213,7 @@ class mainmenu(tk.Frame) :
         button1=ttk.Button(self,text = " Generate Schedule ",command =self.click1,width=15)
         button1.grid(row=3, column=0 , padx=10, pady=10)
         
-        button2=ttk.Button(self,text = " Show Teams ",command = print_hello,width=15)
+        button2=ttk.Button(self,text = " Show Teams ",command = partial(self.transition2, controller),width=15)
         button2.grid(row=4, column=0 , padx=10, pady=10)
         
         button3=ttk.Button(self,text = " Show Schedule ",command = print_hello,width=15)
@@ -271,7 +272,8 @@ class mainmenu(tk.Frame) :
                 stadium=l[2].strip()
                 venue=l[3].strip()
                 team1=l[4].strip()
-                team2=l[5].strip("\n")
+                team2=l[5].lstrip()
+                team2=team2.strip("\n")
                 sql="INSERT INTO schedule VALUES ({},\'{}\',\'{}\',\'{}\',\'{}\',\'{}\',\'{}\')".format(i,date,time,stadium,venue,team1,team2)
                 cursor.execute(sql)
                 connector.commit()
@@ -282,7 +284,9 @@ class mainmenu(tk.Frame) :
     def transition7(self,controller):
         controller.show_frame(team_stats)
     def transition8(self,controller):
-             controller.show_frame(tour_stats)
+        controller.show_frame(tour_stats)
+    def transition2(self,controller):
+              controller.show_frame(show_team)
     def transition4(self):
         
         top=tk.Toplevel()
@@ -321,8 +325,7 @@ class mainmenu(tk.Frame) :
 #         controller.show_frame(points_table)
 # =============================================================================
 # =============================================================================
-#     def transition2(self,controller):
-#         controller.show_frame(transition2)
+#     
 #     def transition3(self,controller):
 #         controller.show_frame(transition3)
 #     def transition4(self,controller):
@@ -360,11 +363,13 @@ class gen_tourn(tk.Frame):
         parent = self._nametowidget(parent_name)
         gp=parent._nametowidget(parent.winfo_parent())
         gp.frames[team_stats].options=[team.name for team in T.teams]
-        
-        
         gp.frames[team_stats].clicked.set(gp.frames[team_stats].options[0])
         gp.frames[team_stats].dropDown=tk.OptionMenu(gp.frames[team_stats],gp.frames[team_stats].clicked, *gp.frames[team_stats].options)
         gp.frames[team_stats].dropDown.grid(row = 0, column = 1)
+        gp.frames[show_team].options=[team.name for team in T.teams]
+        gp.frames[show_team].clicked.set(gp.frames[show_team].options[0])
+        gp.frames[show_team].dropDown=tk.OptionMenu(gp.frames[show_team],gp.frames[show_team].clicked, *gp.frames[show_team].options)
+        gp.frames[show_team].dropDown.grid(row = 0, column = 1)
         controller.show_frame(mainmenu)
         
 class team_stats(tk.Frame):
@@ -372,41 +377,79 @@ class team_stats(tk.Frame):
         tk.Frame.__init__(self,parent)
         self.clicked=tk.StringVar()
         self.options=["idk"]
-        Output = tk.Text(self,height=5)
+        Output = tk.Text(self,height=7)
         Output.grid(row=0,column=3)
         statsButton = tk.Button(self, text = "Show stats" , command = partial(self.dispStats,self.clicked,Output))
         statsButton.grid(row = 0, column = 2)
-        
+        backButton=tk.Button(self, text = "Back", command = partial(controller.show_frame,mainmenu))
+        backButton.grid(row=1,column=0)
         
         
     def dispStats(self,clicked,Output):
         Output.delete("1.0","end")
-        cursor.execute("select played from points_table where team = {}".format(clicked))
+        cursor.execute("select played from points_table where team = \"{}\"".format(str(clicked.get())))
         played = cursor.fetchone()
-        Output.insert(tk.END,"Matches played: " + str(played))         
-        cursor.execute("select won from points_table where team = {}".format(clicked))
+        Output.insert(tk.END,"Matches played: " + str(played)[1:-2]+'\n')         
+        cursor.execute("select won from points_table where team = \"{}\"".format(clicked.get()))
         won = cursor.fetchone()
-        Output.insert(tk.END,"Matches won: " + str(won))    
-        cursor.execute("select lost from points_table where team = {}".format(clicked))
+        Output.insert(tk.END,"Matches won: " + str(won)[1:-2]+'\n')    
+        cursor.execute("select lost from points_table where team = \"{}\"".format(clicked.get()))
         lost = cursor.fetchone()
-        Output.insert(tk.END,"Matches lost: " + str(lost))
+        Output.insert(tk.END,"Matches lost: " + str(lost)[1:-2]+'\n')
+        cursor.execute("select drawn from points_table where team = \"{}\"".format(clicked.get()))
+        drawn = cursor.fetchone()
+        Output.insert(tk.END,"Matches drawn: " + str(drawn)[1:-2]+'\n')
+        cursor.execute("select last_5_matches from points_table where team = \"{}\"".format(clicked.get()))
+        l5 = cursor.fetchone()
+        Output.insert(tk.END,"Last 5 matches: " + str(l5)[1:-2]+'\n')
+        for team in T.teams :
+            if team.name==clicked.get():
+                t=team
+        tsco=t.top_scorer()
+        twic=t.top_wickettaker()
+        Output.insert(tk.END,"Top run-scorer: " + tsco.first_name + ' ' + tsco.last_name +":"+ str(tsco.runs_scored)+'\n')
+        Output.insert(tk.END,"Top wicket-taker: " + twic.first_name + ' ' + twic.last_name+":"+ str(twic.wickets) +'\n')
             
 class tour_stats(tk.Frame):
     def __init__(self, parent, controller):           
         tk.Frame.__init__(self,parent)
-        Output = tk.Text(self,height=10)
-        Output.grid(row=0,column=2)
-        statsButton = tk.Button(self, text = "Show stats" , command = partial(self.dispStats,Output))
+        Output1 = tk.Text(self,height=6,width=25)
+        Output1.grid(row=0,column=2)
+        Output2 = tk.Text(self,height=6,width=25)
+        Output2.grid(row=0,column=3)
+        statsButton = tk.Button(self, text = "Show stats" , command = partial(self.dispStats,Output1,Output2))
         statsButton.grid(row = 0, column = 1)
-    def dispStats(self,Output):
-        Output.delete("1.0","end")
+        backButton=tk.Button(self, text = "Back", command = partial(controller.show_frame,mainmenu))
+        backButton.grid(row=1,column=0)
+    def dispStats(self,Output1,Output2):
+        Output1.delete("1.0","end")
+        Output2.delete("1.0","end")
         T.calc_stats()
-        Output.insert(tk.END,"Top 5 runscorers\n")
+        Output1.insert(tk.END,"Top 5 runscorers\n")
         for keys, values in T.sorted_runs.items():
-            Output.insert(tk.END,keys+":"+str(values)+"\n")
-        Output.insert(tk.END,"Top 5 wickettakers\n")
+            Output1.insert(tk.END,keys+":"+str(values)+"\n")
+        Output2.insert(tk.END,"Top 5 wickettakers\n")
         for keys, values in T.sorted_wickets.items():
-            Output.insert(tk.END,keys+":"+str(values)+"\n")
+            Output2.insert(tk.END,keys+":"+str(values)+"\n")
+            
+class show_team(tk.Frame):
+    def __init__(self, parent, controller):           
+        tk.Frame.__init__(self,parent)
+        self.clicked=tk.StringVar()
+        self.options=["idk"]
+        Output = tk.Text(self,height=15,width=90)
+        Output.grid(row=0,column=3)
+        detailsButton = tk.Button(self, text = "Show details" , command = partial(self.dispStats,self.clicked,Output))
+        detailsButton.grid(row = 0, column = 2)
+        backButton=tk.Button(self, text = "Back", command = partial(controller.show_frame,mainmenu))
+        backButton.grid(row=1,column=0)
+    def dispStats(self,clicked,Output):
+        Output.delete("1.0","end")
+        for team in T.teams :
+            if team.name==clicked.get():
+                t=team
+        Output.insert(tk.END,t.__str__())
+    
 # Driver Code
 app = tkinterApp()
 app.mainloop()
