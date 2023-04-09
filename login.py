@@ -549,50 +549,32 @@ class scorecard(tk.Frame):
             Output4.insert(tk.END,'\n')
 
 class GuiSchedule(tk.Frame):
-    def __init__(self,parent,controller):
+    def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
-        show=tk.Button(self,text="Show Schedule",command=partial(self.showSchedule,controller))
-        show.grid(row=0,column=0)
-        self.parent=parent
-
-
+        show = tk.Button(self, text="Show Schedule", command=partial(self.show_schedule,controller))
+        show.grid(row=0, column=0)
+        self.parent = parent
+        self.controller = controller
         
-    def showSchedule(self,controller):
-        # myscrollbar=ttk.Scrollbar(self,orient="vertical")
-        # myscrollbar.grid(column=8,sticky="ns")
+    def show_schedule(self, controller):
+        schedule = tk.Text(self, height=40, width=155)
+        schedule.grid(row=1, column=0, columnspan=8)
         
-        # self.canvas = tk.Canvas(self)
-        # self.canvas.grid(row=1, column=0, sticky=tk.NSEW)
-
-        # self.scrollbar = ttk.Scrollbar(self, orient=tk.VERTICAL, command=self.canvas.yview)
-        # self.scrollbar.grid(row=0, column=7, sticky=tk.NS)
-        # self.canvas.config(yscrollcommand=self.scrollbar.set)
-
-        # self.inner_frame = tk.Frame(self.canvas)
-        # self.canvas.create_window((0, 0), window=self.inner_frame, anchor=tk.NW)
+        scrollbar = ttk.Scrollbar(self, orient="vertical", command=schedule.yview)
+        scrollbar.grid(row=1, column=8, sticky="ns")
+        schedule.config(yscrollcommand=scrollbar.set)
         
         headers = ["Match ID", "Date", "Time", "Stadium", "Venue", "Team 1", "Team 2"]
-        for i, header in enumerate(headers):
-            if i == 3 or i == 5 or i == 6:
-                tk.Label(self, text=header, relief=tk.RIDGE, width=30).grid(row=1, column=i)
-            else:
-                tk.Label(self, text=header, relief=tk.RIDGE, width=10).grid(row=1, column=i)
+        schedule.insert(tk.END, "{:<10} {:<10} {:<6} {:<52} {:<12} {:<29} {:<29}\n\n".format(*headers))
 
-        with open("schedule.txt", "r") as f:
+        with open('schedule.txt', "r") as f:
             for i, line in enumerate(f, start=1):
                 data = line.strip().split(",")
                 match_id = str(i)
-                tk.Label(self, text=match_id, relief=tk.RIDGE, width=10).grid(row=i+1, column=0)
-                for j, value in enumerate(data):
-                    if j == 2 or j == 4 or j == 5:
-                        tk.Label(self, text=value.strip(), relief=tk.RIDGE, width=30).grid(row=i+1, column=j+1)
-                    else:
-                        tk.Label(self, text=value.strip(), relief=tk.RIDGE, width=10).grid(row=i+1, column=j+1)
+                schedule.insert(tk.END, "{:<10} {:<10} {:<5} {:<50} {:<10} {:<28} {:<28}\n".format(match_id, *data))
 
-        # self.inner_frame.update_idletasks()
-        # self.canvas.config(scrollregion=self.canvas.bbox("all"))
-        back=tk.Button(self,text="Back" , command=partial(controller.show_frame,mainmenu)).grid(row=i+2,column=0)
-
+        back = tk.Button(self, text="Back", command=partial(controller.show_frame,mainmenu))
+        back.grid(row=2, column=0)
 class points_table (tk.Frame) :
     def __init__(self,parent,controller):
         tk.Frame.__init__(self,parent)
@@ -606,8 +588,8 @@ class points_table (tk.Frame) :
         tk.Label(self, text='Team', font=label_font, width=15, height=2, anchor='center').grid(row=1, column=0)
         tk.Label(self, text='Matches', font=label_font, width=10, height=2, anchor='center').grid(row=1, column=1)
         tk.Label(self, text='Won', font=label_font, width=10, height=2, anchor='center').grid(row=1, column=2)
-        tk.Label(self, text='Drawn', font=label_font, width=10, height=2, anchor='center').grid(row=1, column=3)
-        tk.Label(self, text='Lost', font=label_font, width=10, height=2, anchor='center').grid(row=1, column=4)
+        tk.Label(self, text='Lost', font=label_font, width=10, height=2, anchor='center').grid(row=1, column=3)
+        tk.Label(self, text='Drawn', font=label_font, width=10, height=2, anchor='center').grid(row=1, column=4)
         tk.Label(self, text='Points', font=label_font, width=10, height=2, anchor='center').grid(row=1, column=5)
         tk.Label(self, text='Last 5 matches', font=label_font, width=15, height=2, anchor='center').grid(row=1, column=6)
         
@@ -627,7 +609,7 @@ class points_table (tk.Frame) :
             tk.Label(self, text=row[6], font=label_font, width=15, height=2, anchor='center').grid(row=i+2, column=6)
         cursor.execute("select match_no from match_id")
         num_match=cursor.fetchone()[0]
-        tk.Label(self,text="Total Matches Played : {}".format(num_match), width=15, height=2, anchor='center').grid(row=i+3,column=0)
+        tk.Label(self,text="*Total Matches \nPlayed : {}".format(num_match), width=15, height=2, anchor='center').grid(row=i+3,column=0)
         back=tk.Button(self,text="Back" , command=partial(controller.show_frame,mainmenu)).grid(row=i+4,column=0,columnspan=2,rowspan=2)
         
 
