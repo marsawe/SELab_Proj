@@ -135,7 +135,7 @@ class tkinterApp(tk.Tk):
         
         # iterating through a tuple consisting
         # of the different page layouts
-        for F in (login_page,gen_tourn,mainmenu,GuiSchedule,points_table,team_stats,tour_stats,show_team,scorecard) : 
+        for F in (login_page,gen_tourn,mainmenu,GuiSchedule,points_table,team_stats,tour_stats,show_team,scorecard,player_stats) : 
             frame = F(container, self)
   
             # initializing frame of that object from
@@ -239,10 +239,15 @@ class mainmenu(tk.Frame) :
         
         button8=ttk.Button(self,text = " Tournament Stats ",command = partial(self.transition8, controller),width=15)
         button8.grid(row=6, column=3 , padx=10, pady=10)
-    
+        
+        button9=ttk.Button(self,text = "Player stats",command = partial(self.transition9,controller),width=15)
+        button9.grid(row=7, column=3, padx=10, pady=10)
+        
     def parent(self) :
         return self.parent
     
+    def transition9(self,controller):
+        controller.show_frame(player_stats)
     def click1(self):
         
         cursor.execute("use cricket")
@@ -382,8 +387,14 @@ class gen_tourn(tk.Frame):
         gp.frames[scorecard].clicked.set(gp.frames[scorecard].options[0])
         gp.frames[scorecard].dropDown=tk.OptionMenu(gp.frames[scorecard],gp.frames[scorecard].clicked, *gp.frames[scorecard].options)
         gp.frames[scorecard].dropDown.grid(row = 0, column = 1)
-        
-        
+        gp.frames[player_stats].options=[team.name for team in T.teams]
+        gp.frames[player_stats].clicked.set(gp.frames[player_stats].options[0])
+        gp.frames[player_stats].dropDown=tk.OptionMenu(gp.frames[player_stats],gp.frames[player_stats].clicked, *gp.frames[player_stats].options)
+        gp.frames[player_stats].dropDown.grid(row = 0, column = 1)
+        gp.frames[player_stats].options2=["test"]
+        gp.frames[player_stats].clicked2.set(gp.frames[player_stats].options2[0])
+        gp.frames[player_stats].dropDown2=tk.OptionMenu(gp.frames[player_stats],gp.frames[player_stats].clicked2, *gp.frames[player_stats].options2)
+        gp.frames[player_stats].dropDown2.grid(row = 0, column = 3)
         
         controller.show_frame(mainmenu)
           
@@ -612,7 +623,47 @@ class points_table (tk.Frame) :
         tk.Label(self,text="*Total Matches \nPlayed : {}".format(num_match), width=15, height=2, anchor='center').grid(row=i+3,column=0)
         back=tk.Button(self,text="Back" , command=partial(controller.show_frame,mainmenu)).grid(row=i+4,column=0,columnspan=2,rowspan=2)
         
-
+class player_stats(tk.Frame):
+    def __init__(self, parent, controller):  
+        self.var = tk.StringVar()
+        self.var.set('')         
+        tk.Frame.__init__(self,parent)
+        self.clicked=tk.StringVar()
+        self.options=["idk"]
+        self.clicked2=tk.StringVar()
+        self.options2=["idk"]
+        Output = tk.Text(self,height=15,width=90)
+        Output.grid(row=0,column=5)
+        tdetailsButton = tk.Button(self, text = "Select team" , command = partial(self.dispStats,self.clicked,Output))
+        tdetailsButton.grid(row = 0, column = 2)
+        pdetailsButton = tk.Button(self, text = "Show details", command = partial(self.dispPlayer,self.clicked2,Output))
+        pdetailsButton.grid(row=0,column=4)
+        backButton=tk.Button(self, text = "Back", command = partial(controller.show_frame,mainmenu))
+        backButton.grid(row=1,column=0)
+    def dispStats(self,clicked,Output):
+        for team in T.teams :
+            if team.name==clicked.get():
+                self.t=team
+        self.options2=[player.first_name+' '+player.last_name for player in self.t.players]
+        self.clicked2.set(self.options2[0])
+        self.dropDown2['menu'].delete(0, 'end')
+        for name in self.options2:
+            self.dropDown2['menu'].add_command(label = name, command= self.clicked2.set(name))
+    def dispPlayer(self, clicked2, Output):
+        for player in self.t.players:
+            if (player.first_name + ' '+ player.last_name)==clicked2.get():
+                p = player
+        Output.delete("1.0","end")
+        Output.insert(tk.END,"Name:" + str(p.first_name)+' '+p.last_name+'\n')
+        Output.insert(tk.END,"Age:" + str(p.age)+'\n')
+        Output.insert(tk.END,"Team:" + str(self.t.name)+'\n')
+        Output.insert(tk.END,"Role:" + str(p.role)+'\n')
+        Output.insert(tk.END,"Details:" + str(p.details)+'\n')
+        Output.insert(tk.END,"Runs scored:" + str(p.runs_scored)+'\n')
+        Output.insert(tk.END,"Balls faced:" + str(p.balls_faced)+'\n')
+        Output.insert(tk.END,"Wickets taken:" + str(p.wickets)+'\n')
+        Output.insert(tk.END,"Overs bowled:" + str(p.overs)+'\n')
+        Output.insert(tk.END,"Runs conceded:" + str(p.runs_conceded)+'\n')
         
 # Driver Code
 app = tkinterApp()

@@ -1,28 +1,10 @@
-15-04-2023, 2200, Rajiv Gandhi International Cricket Stadium, Hyderabad, Mumbai Indians, Canberra Calamities
-15-04-2023, 2200, M. A. Chidambaram Stadium, Chennai, Rising Pune Supergiants, Delhi Daredevils
-16-04-2023, 2200, Eden Gardens, Kolkata, Rajasthan Royals, Melbourne Renegades
-16-04-2023, 2200, M. Chinnaswamy Stadium, Bengaluru, Brisbane Heat, Pune Panthers
-17-04-2023, 2200, M. Chinnaswamy Stadium, Bengaluru, Delhi Daredevils, Mumbai Indians
-17-04-2023, 2200, Eden Gardens, Kolkata, Melbourne Renegades, Canberra Calamities
-18-04-2023, 2200, Eden Gardens, Kolkata, Pune Panthers, Rising Pune Supergiants
-18-04-2023, 2200, Sawai Mansingh Stadium, Jaipur, Brisbane Heat, Rajasthan Royals
-19-04-2023, 2200, Wankhede Stadium, Mumbai, Mumbai Indians, Melbourne Renegades
-19-04-2023, 2200, Sawai Mansingh Stadium, Jaipur, Delhi Daredevils, Pune Panthers
-20-04-2023, 2200, M. Chinnaswamy Stadium, Bengaluru, Canberra Calamities, Brisbane Heat
-20-04-2023, 2200, Eden Gardens, Kolkata, Rising Pune Supergiants, Rajasthan Royals
-21-04-2023, 2200, Punjab Cricket Association Stadium, Mohali, Pune Panthers, Mumbai Indians
-21-04-2023, 2200, Sawai Mansingh Stadium, Jaipur, Brisbane Heat, Melbourne Renegades
-22-04-2023, 2200, Wankhede Stadium, Mumbai, Rajasthan Royals, Delhi Daredevils
-22-04-2023, 2200, Eden Gardens, Kolkata, Rising Pune Supergiants, Canberra Calamities
-23-04-2023, 1800, Rajiv Gandhi International Cricket Stadium, Hyderabad, Mumbai Indians, Brisbane Heat
-23-04-2023, 1800, Eden Gardens, Kolkata, Pune Panthers, Rajasthan Royals
-24-04-2023, 2200, Punjab Cricket Association Stadium, Mohali, Melbourne Renegades, Rising Pune Supergiants
-24-04-2023, 2200, Arun Jaitley Stadium, Delhi, Delhi Daredevils, Canberra Calamities
-25-04-2023, 2200, Wankhede Stadium, Mumbai, Rajasthan Royals, Mumbai Indians
-25-04-2023, 2200, Eden Gardens, Kolkata, Rising Pune Supergiants, Brisbane Heat
-26-04-2023, 2200, M. A. Chidambaram Stadium, Chennai, Canberra Calamities, Pune Panthers
-26-04-2023, 2200, Arun Jaitley Stadium, Delhi, Delhi Daredevils, Melbourne Renegades
-27-04-2023, 2200, Eden Gardens, Kolkata, Mumbai Indians, Rising Pune Supergiants
-27-04-2023, 2200, Sawai Mansingh Stadium, Jaipur, Rajasthan Royals, Canberra Calamities
-28-04-2023, 2200, Punjab Cricket Association Stadium, Mohali, Brisbane Heat, Delhi Daredevils
-28-04-2023, 2200, M. Chinnaswamy Stadium, Bengaluru, Pune Panthers, Melbourne Renegades
+15-04-2023, 2200, Arun Jaitley Stadium, Delhi, Gujarat Lions, Kolkata Knight Riders
+15-04-2023, 2200, M. Chinnaswamy Stadium, Bengaluru, Mumbai Indians, Sydney Thunder
+16-04-2023, 2200, Punjab Cricket Association Stadium, Mohali, Sydney Thunder, Gujarat Lions
+16-04-2023, 2200, Wankhede Stadium, Mumbai, Delhi Daredevils, Kolkata Knight Riders
+17-04-2023, 2200, Wankhede Stadium, Mumbai, Gujarat Lions, Delhi Daredevils
+17-04-2023, 2200, Eden Gardens, Kolkata, Sydney Thunder, Mumbai Indians
+18-04-2023, 2200, Sawai Mansingh Stadium, Jaipur, Mumbai Indians, Gujarat Lions
+18-04-2023, 2200, Arun Jaitley Stadium, Delhi, Kolkata Knight Riders, Delhi Daredevils
+19-04-2023, 2200, M. A. Chidambaram Stadium, Chennai, Gujarat Lions, Kolkata Knight Riders
+19-04-2023, 2200, Wankhede Stadium, Mumbai, Mumbai Indians, Sydney Thunder
