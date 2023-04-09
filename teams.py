@@ -106,20 +106,6 @@ class Tournament:
         for team in self.teams:
             print(team)
 
-    def save_teams(self, teams, filename):
-        with open(filename, 'w') as f:
-            for team in teams:
-                f.write(team.name + ':\n')
-                f.write('Captain: ' + team.captain.first_name +
-                        ' ' + team.captain.last_name + '\n\n')
-                f.write('{:<20}{:<10}{:<20}{:<20}\n'.format(
-                    'Name', 'Age', 'Role', 'Details'))
-                for player in team.players:
-                    f.write('{:<20}{:<10}{:<20}{:<20}\n'.format(
-                        player.first_name + ' ' + player.last_name, player.age, player.role, player.details))
-                f.write('\n')
-        print(f'The teams have been saved to {filename} successfully!')
-
     def load_data(self):
         with open('first_names.txt') as f:
             self.first_names = f.read().split(', ')
@@ -136,6 +122,21 @@ class Tournament:
             player = Player(first_name, last_name, age, role, details)
             self.add_player(player)
     
+    def save_teams(self, teams, filename):
+        i=0
+        with open(filename, 'w') as f:
+            for team in teams:
+                f.write(team.name + ':\n')
+                f.write('' + team.captain.first_name +
+                        ' ' + team.captain.last_name + '\n')
+                f.write('Name Age Role Details')
+                f.write('\n')
+                for player in team.players:
+                    f.write(
+                        player.first_name + ' ' + player.last_name + ' ' + str(player.age) + ' ' + player.role + ' ' + player.details + '\n')
+                if (i < len(teams)-1):
+                    f.write('\n\n')
+                i+=1
     
 
 

@@ -1,6 +1,21 @@
-15-04-2023, 2200, Arun Jaitley Stadium, Delhi,  ,Big Bash Blasters
-15-04-2023, 2200, M. A. Chidambaram Stadium, Chennai, Brisbane Heat ,Chennai Super Kings
-16-04-2023, 1800, Rajiv Gandhi International Cricket Stadium, Hyderabad, Chennai Super Kings ,
-16-04-2023, 1800, Arun Jaitley Stadium, Delhi, Brisbane Heat ,Big Bash Blasters
-17-04-2023, 2200, Wankhede Stadium, Mumbai,  ,Brisbane Heat
-17-04-2023, 2200, Sawai Mansingh Stadium, Jaipur, Chennai Super Kings ,Big Bash Blasters
+15-04-2023, 2200, Sawai Mansingh Stadium, Jaipur, Rising Pune Supergiants, Royal Challengers Bangalore
+15-04-2023, 2200, M. Chinnaswamy Stadium, Bengaluru, Jaipur Jaguars, Delhi Capitals
+16-04-2023, 1800, Wankhede Stadium, Mumbai, Sydney Thunder, Chennai Super Kings
+16-04-2023, 1800, Rajiv Gandhi International Cricket Stadium, Hyderabad, Delhi Capitals, Rising Pune Supergiants
+17-04-2023, 2200, Sawai Mansingh Stadium, Jaipur, Chennai Super Kings, Royal Challengers Bangalore
+17-04-2023, 2200, Punjab Cricket Association Stadium, Mohali, Adelaide Strikers, Jaipur Jaguars
+18-04-2023, 2200, Rajiv Gandhi International Cricket Stadium, Hyderabad, Rising Pune Supergiants, Chennai Super Kings
+18-04-2023, 2200, M. A. Chidambaram Stadium, Chennai, Delhi Capitals, Adelaide Strikers
+19-04-2023, 2200, Wankhede Stadium, Mumbai, Royal Challengers Bangalore, Sydney Thunder
+19-04-2023, 2200, Eden Gardens, Kolkata, Adelaide Strikers, Rising Pune Supergiants
+20-04-2023, 2200, Wankhede Stadium, Mumbai, Sydney Thunder, Chennai Super Kings
+20-04-2023, 2200, Punjab Cricket Association Stadium, Mohali, Jaipur Jaguars, Delhi Capitals
+21-04-2023, 2200, M. Chinnaswamy Stadium, Bengaluru, Rising Pune Supergiants, Sydney Thunder
+21-04-2023, 2200, Wankhede Stadium, Mumbai, Adelaide Strikers, Jaipur Jaguars
+22-04-2023, 2200, M. A. Chidambaram Stadium, Chennai, Chennai Super Kings, Royal Challengers Bangalore
+22-04-2023, 2200, M. Chinnaswamy Stadium, Bengaluru, Jaipur Jaguars, Rising Pune Supergiants
+23-04-2023, 2200, M. A. Chidambaram Stadium, Chennai, Royal Challengers Bangalore, Sydney Thunder
+23-04-2023, 2200, M. Chinnaswamy Stadium, Bengaluru, Delhi Capitals, Adelaide Strikers
+24-04-2023, 2200, Wankhede Stadium, Mumbai, Rising Pune Supergiants, Royal Challengers Bangalore
+24-04-2023, 2200, M. Chinnaswamy Stadium, Bengaluru, Jaipur Jaguars, Delhi Capitals
+25-04-2023, 2200, Eden Gardens, Kolkata, Sydney Thunder, Chennai Super Kings
