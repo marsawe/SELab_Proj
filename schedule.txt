@@ -1,21 +1,28 @@
-15-04-2023, 2200, Sawai Mansingh Stadium, Jaipur, Rising Pune Supergiants, Royal Challengers Bangalore
-15-04-2023, 2200, M. Chinnaswamy Stadium, Bengaluru, Jaipur Jaguars, Delhi Capitals
-16-04-2023, 1800, Wankhede Stadium, Mumbai, Sydney Thunder, Chennai Super Kings
-16-04-2023, 1800, Rajiv Gandhi International Cricket Stadium, Hyderabad, Delhi Capitals, Rising Pune Supergiants
-17-04-2023, 2200, Sawai Mansingh Stadium, Jaipur, Chennai Super Kings, Royal Challengers Bangalore
-17-04-2023, 2200, Punjab Cricket Association Stadium, Mohali, Adelaide Strikers, Jaipur Jaguars
-18-04-2023, 2200, Rajiv Gandhi International Cricket Stadium, Hyderabad, Rising Pune Supergiants, Chennai Super Kings
-18-04-2023, 2200, M. A. Chidambaram Stadium, Chennai, Delhi Capitals, Adelaide Strikers
-19-04-2023, 2200, Wankhede Stadium, Mumbai, Royal Challengers Bangalore, Sydney Thunder
-19-04-2023, 2200, Eden Gardens, Kolkata, Adelaide Strikers, Rising Pune Supergiants
-20-04-2023, 2200, Wankhede Stadium, Mumbai, Sydney Thunder, Chennai Super Kings
-20-04-2023, 2200, Punjab Cricket Association Stadium, Mohali, Jaipur Jaguars, Delhi Capitals
-21-04-2023, 2200, M. Chinnaswamy Stadium, Bengaluru, Rising Pune Supergiants, Sydney Thunder
-21-04-2023, 2200, Wankhede Stadium, Mumbai, Adelaide Strikers, Jaipur Jaguars
-22-04-2023, 2200, M. A. Chidambaram Stadium, Chennai, Chennai Super Kings, Royal Challengers Bangalore
-22-04-2023, 2200, M. Chinnaswamy Stadium, Bengaluru, Jaipur Jaguars, Rising Pune Supergiants
-23-04-2023, 2200, M. A. Chidambaram Stadium, Chennai, Royal Challengers Bangalore, Sydney Thunder
-23-04-2023, 2200, M. Chinnaswamy Stadium, Bengaluru, Delhi Capitals, Adelaide Strikers
-24-04-2023, 2200, Wankhede Stadium, Mumbai, Rising Pune Supergiants, Royal Challengers Bangalore
-24-04-2023, 2200, M. Chinnaswamy Stadium, Bengaluru, Jaipur Jaguars, Delhi Capitals
-25-04-2023, 2200, Eden Gardens, Kolkata, Sydney Thunder, Chennai Super Kings
+15-04-2023, 1800, Rajiv Gandhi International Cricket Stadium, Hyderabad, Perth Scorchers, Melbourne Stars
+15-04-2023, 1800, M. A. Chidambaram Stadium, Chennai, Rising Pune Supergiants, Kolkata Knight Riders
+16-04-2023, 2200, Wankhede Stadium, Mumbai, Mumbai Indians, Kings XI Punjab
+16-04-2023, 2200, Arun Jaitley Stadium, Delhi, Adelaide Strikers, Sydney Thunder
+17-04-2023, 2200, Arun Jaitley Stadium, Delhi, Kolkata Knight Riders, Perth Scorchers
+17-04-2023, 2200, Sawai Mansingh Stadium, Jaipur, Kings XI Punjab, Melbourne Stars
+18-04-2023, 2200, Sawai Mansingh Stadium, Jaipur, Sydney Thunder, Rising Pune Supergiants
+18-04-2023, 2200, M. Chinnaswamy Stadium, Bengaluru, Adelaide Strikers, Mumbai Indians
+19-04-2023, 2200, Punjab Cricket Association Stadium, Mohali, Perth Scorchers, Kings XI Punjab
+19-04-2023, 2200, Sawai Mansingh Stadium, Jaipur, Kolkata Knight Riders, Sydney Thunder
+20-04-2023, 2200, Rajiv Gandhi International Cricket Stadium, Hyderabad, Melbourne Stars, Adelaide Strikers
+20-04-2023, 2200, M. Chinnaswamy Stadium, Bengaluru, Rising Pune Supergiants, Mumbai Indians
+21-04-2023, 2200, Sawai Mansingh Stadium, Jaipur, Sydney Thunder, Perth Scorchers
+21-04-2023, 2200, Rajiv Gandhi International Cricket Stadium, Hyderabad, Adelaide Strikers, Kings XI Punjab
+22-04-2023, 1800, Sawai Mansingh Stadium, Jaipur, Mumbai Indians, Kolkata Knight Riders
+22-04-2023, 1800, M. Chinnaswamy Stadium, Bengaluru, Rising Pune Supergiants, Melbourne Stars
+23-04-2023, 1800, M. Chinnaswamy Stadium, Bengaluru, Perth Scorchers, Adelaide Strikers
+23-04-2023, 1800, M. A. Chidambaram Stadium, Chennai, Sydney Thunder, Mumbai Indians
+24-04-2023, 2200, M. Chinnaswamy Stadium, Bengaluru, Kings XI Punjab, Rising Pune Supergiants
+24-04-2023, 2200, Sawai Mansingh Stadium, Jaipur, Kolkata Knight Riders, Melbourne Stars
+25-04-2023, 2200, M. A. Chidambaram Stadium, Chennai, Mumbai Indians, Perth Scorchers
+25-04-2023, 2200, Punjab Cricket Association Stadium, Mohali, Rising Pune Supergiants, Adelaide Strikers
+26-04-2023, 2200, M. Chinnaswamy Stadium, Bengaluru, Melbourne Stars, Sydney Thunder
+26-04-2023, 2200, Sawai Mansingh Stadium, Jaipur, Kolkata Knight Riders, Kings XI Punjab
+27-04-2023, 2200, Eden Gardens, Kolkata, Perth Scorchers, Rising Pune Supergiants
+27-04-2023, 2200, Rajiv Gandhi International Cricket Stadium, Hyderabad, Mumbai Indians, Melbourne Stars
+28-04-2023, 2200, Arun Jaitley Stadium, Delhi, Adelaide Strikers, Kolkata Knight Riders
+28-04-2023, 2200, Sawai Mansingh Stadium, Jaipur, Sydney Thunder, Kings XI Punjab
