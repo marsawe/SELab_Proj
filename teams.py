@@ -1,5 +1,5 @@
 import random
-
+import numpy as np
 class Player:
     
     def __init__(self, first_name, last_name, age, role, details):
@@ -38,6 +38,23 @@ class Team:
                 player.first_name + ' ' + player.last_name, player.age, player.role, player.details)
         output += '\n'
         return output
+    
+    def top_scorer(self):
+        top_runs=0
+        
+        for player in self.players:
+            if(player.runs_scored>top_runs):
+                top_runs=player.runs_scored
+                top_scorer=player
+        return top_scorer
+    def top_wickettaker(self):
+        top_wickets=0
+        
+        for player in self.players:
+            if(player.wickets>top_wickets):
+                top_wickets=player.wickets
+                top_wickettaker=player
+        return top_wickettaker
 
 
 class Tournament:
@@ -137,6 +154,20 @@ class Tournament:
                 if (i < len(teams)-1):
                     f.write('\n\n')
                 i+=1
+    def calc_stats(self):
+        top5runs, top5wickets = {},{}
+        for team in self.teams:
+            for player in team.players:
+                top5runs[player.first_name+" "+player.last_name]=player.runs_scored
+                top5wickets[player.first_name+" "+player.last_name]=player.wickets
+        run_names=list(top5runs.keys())
+        runs=list(top5runs.values())
+        sorted_indices=np.argsort(runs)
+        self.sorted_runs={run_names[i]:runs[i] for i in sorted_indices[-5:]}
+        wicket_names=list(top5wickets.keys())
+        wickets=list(top5wickets.values())
+        sorted_indices=np.argsort(wickets)
+        self.sorted_wickets={wicket_names[i]:wickets[i] for i in sorted_indices[-5:]}
     
 
 
