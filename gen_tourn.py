@@ -348,8 +348,10 @@ class gen_tourn(tk.Frame):
         gen=tk.Button(self, text="Generate Tournament",command=partial(self.genTour,numteams,controller)).grid(row=1,column=0)
     def genTour(self,numteams,controller):
         if(int(numteams.get())==0):
-            return		
+            return
+        		
         cursor.execute("drop database if exists cricket")
+        print(1)
         cursor.execute("create database if not exists cricket")
         cursor.execute("use cricket")
         
@@ -359,6 +361,7 @@ class gen_tourn(tk.Frame):
         cursor.execute("drop table if exists match_id")
         cursor.execute("create table match_id(match_no int(2) primary key)")
         cursor.execute("insert into match_id values(0)")
+        
         parent_name = self.winfo_parent()
         parent = self._nametowidget(parent_name)
         gp=parent._nametowidget(parent.winfo_parent())
@@ -370,7 +373,7 @@ class gen_tourn(tk.Frame):
         gp.frames[show_team].clicked.set(gp.frames[show_team].options[0])
         gp.frames[show_team].dropDown=tk.OptionMenu(gp.frames[show_team],gp.frames[show_team].clicked, *gp.frames[show_team].options)
         gp.frames[show_team].dropDown.grid(row = 0, column = 1)
-        gp.frames[scorecard].options=[i for i in range(1,int(numteams.get()*(numteams.get()-1)/2))]
+        gp.frames[scorecard].options=[i for i in range(1,int(numteams.get()*(numteams.get()-1)/2)+1)]
         gp.frames[scorecard].clicked.set(gp.frames[scorecard].options[0])
         gp.frames[scorecard].dropDown=tk.OptionMenu(gp.frames[scorecard],gp.frames[scorecard].clicked, *gp.frames[scorecard].options)
         gp.frames[scorecard].dropDown.grid(row = 0, column = 1)
@@ -459,13 +462,13 @@ class scorecard(tk.Frame):
         tk.Frame.__init__(self,parent)
         self.clicked=tk.IntVar()
         self.options=["idk"]
-        Output1=tk.Text(self,height=5)
+        Output1=tk.Text(self,height=15)
         Output1.grid(row=0,column=3)
-        Output2=tk.Text(self,height=5)
+        Output2=tk.Text(self,height=15)
         Output2.grid(row=0,column=4)
-        Output3=tk.Text(self,height=5)
+        Output3=tk.Text(self,height=15)
         Output3.grid(row=1,column=3)
-        Output4=tk.Text(self,height=5)
+        Output4=tk.Text(self,height=15)
         Output4.grid(row=1,column=4)
         detailsButton = tk.Button(self, text = "Show scorecard" , command = partial(self.dispStats,self.clicked,Output1,Output2,Output3,Output4))
         detailsButton.grid(row = 0, column = 2)
@@ -477,57 +480,62 @@ class scorecard(tk.Frame):
         Output3.delete("1.0","end")
         Output4.delete("1.0","end")
 
-        cursor.execute("select batter, runs from {}".format("match_"+str(clicked.get())+"_bat1"))
-        scard=cursor.fetchall()
-        t={}
-        for i in range(11):
-            t[scard[i][0]]=scard[i][1]
-        names=list(t.keys())
-        runs=list(t.values())
-        sorted_indices=np.argsort(runs)
-        sorted_={names[i]:runs[i] for i in sorted_indices[-3:]}
-        for keys, values in sorted_.items():
-            Output1.insert(tk.END,keys+":"+str(values)+'\n')
-        cursor.execute("select bowler, wickets from {}".format("match_"+str(clicked.get())+"_bowl2"))
-        scard=cursor.fetchall()
-        t={}
-        cursor.execute("select count(bowler) from {}".format("match_"+str(clicked.get())+"_bowl2"))
-        num=cursor.fetchone()
-        num=num[0]
-        for i in range(int(num)):
-            t[scard[i][0]]=scard[i][1]
-        names=list(t.keys())
-        runs=list(t.values())
-        sorted_indices=np.argsort(runs)
-        sorted_={names[i]:runs[i] for i in sorted_indices[-3:]}
-        for keys, values in sorted_.items():
-            Output2.insert(tk.END,keys+":"+str(values)+'\n')
-        cursor.execute("select batter, runs from {}".format("match_"+str(clicked.get())+"_bat2"))
-        scard=cursor.fetchall()
-        t={}
-        for i in range(11):
-            t[scard[i][0]]=scard[i][1]
-        names=list(t.keys())
-        runs=list(t.values())
-        sorted_indices=np.argsort(runs)
-        sorted_={names[i]:runs[i] for i in sorted_indices[-3:]}
-        for keys, values in sorted_.items():
-            Output3.insert(tk.END,keys+":"+str(values)+'\n')
-        cursor.execute("select bowler, wickets from {}".format("match_"+str(clicked.get())+"_bowl1"))
-        scard=cursor.fetchall()
-        t={}
-        cursor.execute("select count(bowler) from {}".format("match_"+str(clicked.get())+"_bowl1"))
-        num=cursor.fetchone()[0]
-        
-        for i in range(int(num)):
-            t[scard[i][0]]=scard[i][1]
-        names=list(t.keys())
-        runs=list(t.values())
-        sorted_indices=np.argsort(runs)
-        sorted_={names[i]:runs[i] for i in sorted_indices[-3:]}
-        for keys, values in sorted_.items():
-            Output4.insert(tk.END,keys+":"+str(values)+'\n')
-    
+        cursor.execute("select * from {}".format("match_"+str(clicked.get())+"_bat1"))
+        op=cursor.fetchall()
+        Output1.insert(tk.END,"S.No.\tName\t\t\tRuns\tBalls\tFours\tSixes\tStrike rate\n")
+        for player in op:
+            i=0
+            for stat in player:
+                if(i==0):
+                    Output1.insert(tk.END,str(stat)+' ')
+                elif(i==2):
+                    Output1.insert(tk.END,'\t\t\t'+str(stat)+' ')
+                else:
+                    Output1.insert(tk.END,'\t'+str(stat)+' ')
+                i+=1
+            Output1.insert(tk.END,'\n')
+        cursor.execute("select * from {}".format("match_"+str(clicked.get())+"_bowl2"))
+        op=cursor.fetchall()
+        Output2.insert(tk.END,"S.No.\tName\t\t\tOvers\tRuns\tWickers\tEconomy\n")
+        for player in op:
+            i=0
+            for stat in player:
+                if(i==0):
+                    Output2.insert(tk.END,str(stat)+' ')
+                elif(i==2):
+                    Output2.insert(tk.END,'\t\t\t'+str(stat)+' ')
+                else:
+                    Output2.insert(tk.END,'\t'+str(stat)+' ')
+                i+=1
+            Output2.insert(tk.END,'\n')
+        cursor.execute("select * from {}".format("match_"+str(clicked.get())+"_bat2"))
+        op=cursor.fetchall()
+        Output3.insert(tk.END,"S.No.\tName\t\t\tRuns\tBalls\tFours\tSixes\tStrike rate\n")
+        for player in op:
+            i=0
+            for stat in player:
+                if(i==0):
+                    Output3.insert(tk.END,str(stat)+' ')
+                elif(i==2):
+                    Output3.insert(tk.END,'\t\t\t'+str(stat)+' ')
+                else:
+                    Output3.insert(tk.END,'\t'+str(stat)+' ')
+                i+=1
+            Output3.insert(tk.END,'\n')
+        cursor.execute("select * from {}".format("match_"+str(clicked.get())+"_bowl1"))
+        op=cursor.fetchall()
+        Output4.insert(tk.END,"S.No.\tName\t\t\tOvers\tRuns\tWickers\tEconomy\n")
+        for player in op:
+            i=0
+            for stat in player:
+                if(i==0):
+                    Output4.insert(tk.END,str(stat)+' ')
+                elif(i==2):
+                    Output4.insert(tk.END,'\t\t\t'+str(stat)+' ')
+                else:
+                    Output4.insert(tk.END,'\t'+str(stat)+' ')
+                i+=1
+            Output4.insert(tk.END,'\n')
 # Driver Code
 app = tkinterApp()
 app.mainloop()
