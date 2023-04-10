@@ -273,7 +273,9 @@ class mainmenu(tk.Frame) :
         schedule.generate_schedule()
         schedule.print_schedule("schedule.txt")
         
-        
+        p=[]
+        global d
+        d={}
         with open("schedule.txt","r") as f :
             i=1
             for x in f : 
@@ -286,10 +288,27 @@ class mainmenu(tk.Frame) :
                 team1=l[4].strip()
                 team2=l[5].lstrip()
                 team2=team2.strip("\n")
+                t1=""
+                t2=""
+                for char in team1 :
+                    if char.isupper() :
+                        t1+=char
+                for char in team2 :
+                    if char.isupper() :
+                        t2+=char
+                p.append(t1+" vs "+t2)
+                d[t1+" vs "+t2]=i
                 sql="INSERT INTO schedule VALUES ({},\'{}\',\'{}\',\'{}\',\'{}\',\'{}\',\'{}\')".format(i,date,time,stadium,venue,team1,team2)
                 cursor.execute(sql)
                 connector.commit()
                 i+=1
+        gp=self.parent.master
+        
+        gp.frames[scorecard].options=p
+        gp.frames[scorecard].clicked.set(gp.frames[scorecard].options[0])
+        gp.frames[scorecard].dropDown=tk.OptionMenu(gp.frames[scorecard],gp.frames[scorecard].clicked, *gp.frames[scorecard].options)
+        gp.frames[scorecard].dropDown.grid(row = 1, column = 0)
+        
         #End of creating a schedule table in database
         tkinter.messagebox.showinfo("Succesful", "The tounament schedule has been generated") 
         
@@ -345,6 +364,7 @@ class gen_tourn(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self,parent)
         usernameLabel = ttk.Label(self, text="Number of teams ").grid(row=1, column=0)
+        global numteams
         numteams=tk.IntVar()
         e=tk.Entry(self, textvariable=numteams).grid(row=1,column=1)
         gen=tk.Button(self, text="Generate Tournament",command=partial(self.genTour,numteams,controller)).grid(row=2,column=1)
@@ -378,10 +398,7 @@ class gen_tourn(tk.Frame):
         gp.frames[show_team].clicked.set(gp.frames[show_team].options[0])
         gp.frames[show_team].dropDown=tk.OptionMenu(gp.frames[show_team],gp.frames[show_team].clicked, *gp.frames[show_team].options)
         gp.frames[show_team].dropDown.grid(row = 0, column = 1)
-        gp.frames[scorecard].options=[i for i in range(1,int(numteams.get()*(numteams.get()-1)/2)+1)]
-        gp.frames[scorecard].clicked.set(gp.frames[scorecard].options[0])
-        gp.frames[scorecard].dropDown=tk.OptionMenu(gp.frames[scorecard],gp.frames[scorecard].clicked, *gp.frames[scorecard].options)
-        gp.frames[scorecard].dropDown.grid(row = 0, column = 1)
+        
         
         
         
@@ -471,29 +488,52 @@ class show_team(tk.Frame):
 class scorecard(tk.Frame):
     def __init__(self, parent, controller):           
         tk.Frame.__init__(self,parent)
-        self.clicked=tk.IntVar()
+        self.clicked=tk.StringVar()
         self.options=["idk"]
+        Output=tk.Text(self,height=5)
+        Output.tag_configure("center", justify='center')
+        Output.grid(row=0,column=3,columnspan=2)
         Output1=tk.Text(self,height=15)
-        Output1.grid(row=0,column=3)
+        Output1.grid(row=1,column=3)
         Output2=tk.Text(self,height=15)
-        Output2.grid(row=0,column=4)
+        Output2.grid(row=1,column=4)
         Output3=tk.Text(self,height=15)
-        Output3.grid(row=1,column=3)
+        Output3.grid(row=2,column=3)
         Output4=tk.Text(self,height=15)
-        Output4.grid(row=1,column=4)
-        detailsButton = tk.Button(self, text = "Show scorecard" , command = partial(self.dispStats,self.clicked,Output1,Output2,Output3,Output4))
-        detailsButton.grid(row = 0, column = 2)
+        Output4.grid(row=2,column=4)
+        detailsButton = tk.Button(self, text = "Show scorecard" , command = partial(self.dispStats,self.clicked,Output,Output1,Output2,Output3,Output4))
+        detailsButton.grid(row = 1, column = 1)
         backButton=tk.Button(self, text = "Back", command = partial(controller.show_frame,mainmenu))
-        backButton.grid(row=1,column=0)
-    def dispStats(self,clicked,Output1,Output2,Output3,Output4):
+        backButton.grid(row=2,column=0)
+    def dispStats(self,clicked,Output,Output1,Output2,Output3,Output4):
+        Output.delete("1.0","end")
         Output1.delete("1.0","end")
         Output2.delete("1.0","end")
         Output3.delete("1.0","end")
         Output4.delete("1.0","end")
+        team1,team2=str(clicked.get()).split(" vs ")
+        cursor.execute("select SUM(runs) from {}".format("match_"+str(d[clicked.get()])+"_bat1"))
+        team1bat=cursor.fetchone()[0]
+        cursor.execute("select SUM(runs) from {}".format("match_"+str(d[clicked.get()])+"_bat2"))
+        team2bat=cursor.fetchone()[0]
+        cursor.execute("select SUM(wickets) from {}".format("match_"+str(d[clicked.get()])+"_bowl1"))
+        team1bowl=cursor.fetchone()[0]
+        cursor.execute("select SUM(wickets) from {}".format("match_"+str(d[clicked.get()])+"_bowl2"))
+        team2bowl=cursor.fetchone()[0]
+        
+        Output.insert(tk.END,"\t\t\t\tMatch: "+str(d[clicked.get()])+'\n\t' + team1 +'\t' +str(team1bat) + '/' + str(team2bowl) + '\t\t\t\t' + str(team2bat) + '/' + str(team1bowl) + '\t'+team2+'\n\t\t\t   ')
+        if team1bat>team2bat:
+            Output.insert(tk.END,team1+" won by "+str(team1bat-team2bat)+" runs\n")
+        elif team1bat<team2bat:
+            Output.insert(tk.END,team2+" won by "+str(10-team1bowl)+" wickets\n")
+        else:
+            Output.insert(tk.END,"Match drawn\n")
+        
 
-        cursor.execute("select * from {}".format("match_"+str(clicked.get())+"_bat1"))
+        cursor.execute("select * from {}".format("match_"+str(d[clicked.get()])+"_bat1"))
         op=cursor.fetchall()
-        Output1.insert(tk.END,"S.No.\tName\t\t\tRuns\tBalls\tFours\tSixes\tStrike rate\n")
+        
+        Output1.insert(tk.END,team1 +" batting\nS.No.\tName\t\t\tRuns\tBalls\tFours\tSixes\tStrike rate\n")
         for player in op:
             i=0
             for stat in player:
@@ -505,9 +545,9 @@ class scorecard(tk.Frame):
                     Output1.insert(tk.END,'\t'+str(stat)+' ')
                 i+=1
             Output1.insert(tk.END,'\n')
-        cursor.execute("select * from {}".format("match_"+str(clicked.get())+"_bowl2"))
+        cursor.execute("select * from {}".format("match_"+str(d[clicked.get()])+"_bowl2"))
         op=cursor.fetchall()
-        Output2.insert(tk.END,"S.No.\tName\t\t\tOvers\tRuns\tWickers\tEconomy\n")
+        Output2.insert(tk.END,team2+" bowling\nS.No.\tName\t\t\tOvers\tRuns\tWickers\tEconomy\n")
         for player in op:
             i=0
             for stat in player:
@@ -519,9 +559,9 @@ class scorecard(tk.Frame):
                     Output2.insert(tk.END,'\t'+str(stat)+' ')
                 i+=1
             Output2.insert(tk.END,'\n')
-        cursor.execute("select * from {}".format("match_"+str(clicked.get())+"_bat2"))
+        cursor.execute("select * from {}".format("match_"+str(d[clicked.get()])+"_bat2"))
         op=cursor.fetchall()
-        Output3.insert(tk.END,"S.No.\tName\t\t\tRuns\tBalls\tFours\tSixes\tStrike rate\n")
+        Output3.insert(tk.END,team2+" batting\nS.No.\tName\t\t\tRuns\tBalls\tFours\tSixes\tStrike rate\n")
         for player in op:
             i=0
             for stat in player:
@@ -533,9 +573,9 @@ class scorecard(tk.Frame):
                     Output3.insert(tk.END,'\t'+str(stat)+' ')
                 i+=1
             Output3.insert(tk.END,'\n')
-        cursor.execute("select * from {}".format("match_"+str(clicked.get())+"_bowl1"))
+        cursor.execute("select * from {}".format("match_"+str(d[clicked.get()])+"_bowl1"))
         op=cursor.fetchall()
-        Output4.insert(tk.END,"S.No.\tName\t\t\tOvers\tRuns\tWickers\tEconomy\n")
+        Output4.insert(tk.END,team1+" bowling\nS.No.\tName\t\t\tOvers\tRuns\tWickers\tEconomy\n")
         for player in op:
             i=0
             for stat in player:
