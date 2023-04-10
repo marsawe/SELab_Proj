@@ -391,10 +391,6 @@ class gen_tourn(tk.Frame):
         gp.frames[player_stats].clicked.set(gp.frames[player_stats].options[0])
         gp.frames[player_stats].dropDown=tk.OptionMenu(gp.frames[player_stats],gp.frames[player_stats].clicked, *gp.frames[player_stats].options)
         gp.frames[player_stats].dropDown.grid(row = 0, column = 1)
-        gp.frames[player_stats].options2=["test"]
-        gp.frames[player_stats].clicked2.set(gp.frames[player_stats].options2[0])
-        gp.frames[player_stats].dropDown2=tk.OptionMenu(gp.frames[player_stats],gp.frames[player_stats].clicked2, *gp.frames[player_stats].options2)
-        gp.frames[player_stats].dropDown2.grid(row = 0, column = 3)
         
         controller.show_frame(mainmenu)
           
@@ -632,27 +628,53 @@ class player_stats(tk.Frame):
         self.options=["idk"]
         self.clicked2=tk.StringVar()
         self.options2=["idk"]
-        Output = tk.Text(self,height=15,width=90)
-        Output.grid(row=0,column=5)
+        Output = tk.Text(self,height=15,width=40)
+        Output.grid(row=2,column=1,columnspan=3)
         tdetailsButton = tk.Button(self, text = "Select team" , command = partial(self.dispStats,self.clicked,Output))
-        tdetailsButton.grid(row = 0, column = 2)
-        pdetailsButton = tk.Button(self, text = "Show details", command = partial(self.dispPlayer,self.clicked2,Output))
-        pdetailsButton.grid(row=0,column=4)
+        tdetailsButton.grid(row = 1, column = 1)
         backButton=tk.Button(self, text = "Back", command = partial(controller.show_frame,mainmenu))
-        backButton.grid(row=1,column=0)
+        backButton.grid(row=2,column=0)
+        self.player1=tk.Button(self, text = "Select a team first", command = partial(self.dispPlayer,1,Output))
+        self.player1.grid(row = 0, column=7)
+        self.player2=tk.Button(self, text = "Select a team first", command = partial(self.dispPlayer,2,Output))
+        self.player2.grid(row = 0, column=2)
+        self.player3=tk.Button(self, text = "Select a team first", command = partial(self.dispPlayer,3,Output))
+        self.player3.grid(row = 0, column=3)
+        self.player4=tk.Button(self, text = "Select a team first", command = partial(self.dispPlayer,4,Output))
+        self.player4.grid(row = 0, column=4)
+        self.player5=tk.Button(self, text = "Select a team first", command = partial(self.dispPlayer,5,Output))
+        self.player5.grid(row = 0, column=5)
+        self.player6=tk.Button(self, text = "Select a team first", command = partial(self.dispPlayer,6,Output))
+        self.player6.grid(row = 0, column=6)
+        self.player7=tk.Button(self, text = "Select a team first", command = partial(self.dispPlayer,7,Output))
+        self.player7.grid(row = 1, column=6)
+        self.player8=tk.Button(self, text = "Select a team first", command = partial(self.dispPlayer,8,Output))
+        self.player8.grid(row = 1, column=2)
+        self.player9=tk.Button(self, text = "Select a team first", command = partial(self.dispPlayer,9,Output))
+        self.player9.grid(row = 1 ,column=3)
+        self.player10=tk.Button(self, text = "Select a team first", command = partial(self.dispPlayer,10,Output))
+        self.player10.grid(row = 1, column=4)
+        self.player11=tk.Button(self, text = "Select a team first", command = partial(self.dispPlayer,11,Output))
+        self.player11.grid(row = 1, column=5)
+        
     def dispStats(self,clicked,Output):
         for team in T.teams :
             if team.name==clicked.get():
                 self.t=team
-        self.options2=[player.first_name+' '+player.last_name for player in self.t.players]
-        self.clicked2.set(self.options2[0])
-        self.dropDown2['menu'].delete(0, 'end')
-        for name in self.options2:
-            self.dropDown2['menu'].add_command(label = name, command= self.clicked2.set(name))
-    def dispPlayer(self, clicked2, Output):
-        for player in self.t.players:
-            if (player.first_name + ' '+ player.last_name)==clicked2.get():
-                p = player
+        self.player1['text']=self.t.players[0].first_name+ ' '+ self.t.players[0].last_name
+        self.player2['text']=self.t.players[1].first_name+ ' '+ self.t.players[1].last_name
+        self.player3['text']=self.t.players[2].first_name+ ' '+ self.t.players[2].last_name
+        self.player4['text']=self.t.players[3].first_name+ ' '+ self.t.players[3].last_name
+        self.player5['text']=self.t.players[4].first_name+ ' '+ self.t.players[4].last_name
+        self.player6['text']=self.t.players[5].first_name+ ' '+ self.t.players[5].last_name
+        self.player7['text']=self.t.players[6].first_name+ ' '+ self.t.players[6].last_name
+        self.player8['text']=self.t.players[7].first_name+ ' '+ self.t.players[7].last_name
+        self.player9['text']=self.t.players[8].first_name+ ' '+ self.t.players[8].last_name
+        self.player10['text']=self.t.players[9].first_name+ ' '+ self.t.players[9].last_name
+        self.player11['text']=self.t.players[10].first_name+ ' '+ self.t.players[10].last_name
+        
+    def dispPlayer(self, num, Output):
+        p=self.t.players[num-1]
         Output.delete("1.0","end")
         Output.insert(tk.END,"Name:" + str(p.first_name)+' '+p.last_name+'\n')
         Output.insert(tk.END,"Age:" + str(p.age)+'\n')

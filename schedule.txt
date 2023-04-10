@@ -1,10 +1,10 @@
-15-04-2023, 2200, Arun Jaitley Stadium, Delhi, Gujarat Lions, Kolkata Knight Riders
-15-04-2023, 2200, M. Chinnaswamy Stadium, Bengaluru, Mumbai Indians, Sydney Thunder
-16-04-2023, 2200, Punjab Cricket Association Stadium, Mohali, Sydney Thunder, Gujarat Lions
-16-04-2023, 2200, Wankhede Stadium, Mumbai, Delhi Daredevils, Kolkata Knight Riders
-17-04-2023, 2200, Wankhede Stadium, Mumbai, Gujarat Lions, Delhi Daredevils
-17-04-2023, 2200, Eden Gardens, Kolkata, Sydney Thunder, Mumbai Indians
-18-04-2023, 2200, Sawai Mansingh Stadium, Jaipur, Mumbai Indians, Gujarat Lions
-18-04-2023, 2200, Arun Jaitley Stadium, Delhi, Kolkata Knight Riders, Delhi Daredevils
-19-04-2023, 2200, M. A. Chidambaram Stadium, Chennai, Gujarat Lions, Kolkata Knight Riders
-19-04-2023, 2200, Wankhede Stadium, Mumbai, Mumbai Indians, Sydney Thunder
+15-04-2023, 2200, Sawai Mansingh Stadium, Jaipur, Pune Panthers, Sunrisers Hyderabad
+15-04-2023, 2200, Punjab Cricket Association Stadium, Mohali, Brisbane Heat, Chennai Super Kings
+16-04-2023, 2200, Rajiv Gandhi International Cricket Stadium, Hyderabad, Chennai Super Kings, Pune Panthers
+16-04-2023, 2200, Punjab Cricket Association Stadium, Mohali, Delhi Capitals, Sunrisers Hyderabad
+17-04-2023, 2200, M. Chinnaswamy Stadium, Bengaluru, Pune Panthers, Delhi Capitals
+17-04-2023, 2200, Punjab Cricket Association Stadium, Mohali, Chennai Super Kings, Brisbane Heat
+18-04-2023, 2200, M. A. Chidambaram Stadium, Chennai, Brisbane Heat, Pune Panthers
+18-04-2023, 2200, M. Chinnaswamy Stadium, Bengaluru, Sunrisers Hyderabad, Delhi Capitals
+19-04-2023, 2200, Eden Gardens, Kolkata, Pune Panthers, Sunrisers Hyderabad
+19-04-2023, 2200, Punjab Cricket Association Stadium, Mohali, Brisbane Heat, Chennai Super Kings
