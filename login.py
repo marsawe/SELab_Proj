@@ -1,4 +1,3 @@
-
 import tkinter as tk
 from tkinter import ttk
 import tkinter.messagebox
@@ -30,13 +29,13 @@ def simulate_match(id):
     cursor.execute("Create table match_{}_bat1 (batting_position int(2) PRIMARY KEY AUTO_INCREMENT,batter varchar(30),runs int(3),balls int(3),fours int(2),sixes int(2),strike_rate float)".format(id))
     
     cursor.execute("drop table if exists match_{}_bowl2".format(id))
-    cursor.execute("Create table match_{}_bowl2 (bowler_no int(2) AUTO_INCREMENT PRIMARY KEY,bowler varchar(30),overs int(2),runs int(3),wickets int(2),economy float)".format(id))
+    cursor.execute("Create table match_{}_bowl2 (bowler_no int(2) AUTO_INCREMENT PRIMARY KEY,bowler varchar(30),overs float,runs int(3),wickets int(2),economy float)".format(id))
     
     cursor.execute("drop table if exists match_{}_bat2".format(id))
     cursor.execute("Create table match_{}_bat2 (batting_position int(2) AUTO_INCREMENT PRIMARY KEY,batter varchar(30),runs int(3),balls int(3),fours int(2),sixes int(2),strike_rate float)".format(id))
     
     cursor.execute("drop table if exists match_{}_bowl1".format(id))
-    cursor.execute("Create table match_{}_bowl1 (bowler_no int(2) AUTO_INCREMENT PRIMARY KEY,bowler varchar(30),overs int(2),runs int(3),wickets int(2),economy float)".format(id))
+    cursor.execute("Create table match_{}_bowl1 (bowler_no int(2) AUTO_INCREMENT PRIMARY KEY,bowler varchar(30),overs float,runs int(3),wickets int(2),economy float)".format(id))
     
 
     # team 1 batting stat and pushing them to the database
@@ -135,7 +134,7 @@ class tkinterApp(tk.Tk):
         
         # iterating through a tuple consisting
         # of the different page layouts
-        for F in (login_page,gen_tourn,mainmenu,GuiSchedule,points_table,team_stats,tour_stats,show_team,scorecard) : 
+        for F in (login_page,gen_tourn,mainmenu,GuiSchedule,points_table,team_stats,tour_stats,show_team,scorecard,player_stats) : 
             frame = F(container, self)
   
             # initializing frame of that object from
@@ -239,6 +238,8 @@ class mainmenu(tk.Frame) :
         
         button8=ttk.Button(self,text = " Tournament Stats ",command = partial(self.transition8, controller),width=15)
         button8.grid(row=6, column=3 , padx=10, pady=10)
+        button9=ttk.Button(self,text = " Player Stats ",command = partial(self.transition9, controller),width=15)
+        button9.grid(row=7, column=3 , padx=10, pady=10)
     
     def parent(self) :
         return self.parent
@@ -337,6 +338,8 @@ class mainmenu(tk.Frame) :
         controller.show_frame(team_stats)
     def transition8(self,controller):
         controller.show_frame(tour_stats)
+    def transition9(self,controller):
+        controller.show_frame(player_stats)
         
     def simulate(self,sim_num,top):
         cursor.execute("select max(Match_no) from schedule")
@@ -398,7 +401,10 @@ class gen_tourn(tk.Frame):
         gp.frames[show_team].clicked.set(gp.frames[show_team].options[0])
         gp.frames[show_team].dropDown=tk.OptionMenu(gp.frames[show_team],gp.frames[show_team].clicked, *gp.frames[show_team].options)
         gp.frames[show_team].dropDown.grid(row = 0, column = 1)
-        
+        gp.frames[player_stats].options=[team.name for team in T.teams]
+        gp.frames[player_stats].clicked.set(gp.frames[player_stats].options[0])
+        gp.frames[player_stats].dropDown=tk.OptionMenu(gp.frames[player_stats],gp.frames[player_stats].clicked, *gp.frames[player_stats].options)
+        gp.frames[player_stats].dropDown.grid(row = 0, column = 1)
         
         
         
@@ -623,7 +629,14 @@ class points_table (tk.Frame) :
         self.parent=parent
     def showPoints(self,controller):
         cursor.execute("select * from points_table order by points desc")
-        label_font=("Arial",20,"bold")
+        if numteams.get() <= 10 :
+            label_font=("Arial",20,"bold")
+        elif numteams.get() <= 15 :
+            label_font=("Arial",15,"bold")
+        elif numteams.get() <= 20 :
+            label_font=("Arial",10,"bold")
+        else :
+            label_font=("Arial",8,"bold")
         
         tk.Label(self, text='Team', font=label_font, width=15, height=2, anchor='center').grid(row=1, column=0)
         tk.Label(self, text='Matches', font=label_font, width=10, height=2, anchor='center').grid(row=1, column=1)
@@ -653,7 +666,75 @@ class points_table (tk.Frame) :
         back=tk.Button(self,text="Back" , command=partial(controller.show_frame,mainmenu)).grid(row=i+4,column=0,columnspan=2,rowspan=2)
         
 
+
+class player_stats(tk.Frame):
+    def __init__(self, parent, controller):  
+        self.var = tk.StringVar()
+        self.var.set('')         
+        tk.Frame.__init__(self,parent)
+        self.clicked=tk.StringVar()
+        self.options=["idk"]
+        self.clicked2=tk.StringVar()
+        self.options2=["idk"]
+        Output = tk.Text(self,height=15,width=40)
+        Output.grid(row=2,column=1,columnspan=3)
+        tdetailsButton = tk.Button(self, text = "Select team" , command = partial(self.dispStats,self.clicked,Output))
+        tdetailsButton.grid(row = 1, column = 1)
+        backButton=tk.Button(self, text = "Back", command = partial(controller.show_frame,mainmenu))
+        backButton.grid(row=2,column=0)
+        self.player1=tk.Button(self, text = "Select a team first", command = partial(self.dispPlayer,1,Output))
+        self.player1.grid(row = 0, column=7)
+        self.player2=tk.Button(self, text = "Select a team first", command = partial(self.dispPlayer,2,Output))
+        self.player2.grid(row = 0, column=2)
+        self.player3=tk.Button(self, text = "Select a team first", command = partial(self.dispPlayer,3,Output))
+        self.player3.grid(row = 0, column=3)
+        self.player4=tk.Button(self, text = "Select a team first", command = partial(self.dispPlayer,4,Output))
+        self.player4.grid(row = 0, column=4)
+        self.player5=tk.Button(self, text = "Select a team first", command = partial(self.dispPlayer,5,Output))
+        self.player5.grid(row = 0, column=5)
+        self.player6=tk.Button(self, text = "Select a team first", command = partial(self.dispPlayer,6,Output))
+        self.player6.grid(row = 0, column=6)
+        self.player7=tk.Button(self, text = "Select a team first", command = partial(self.dispPlayer,7,Output))
+        self.player7.grid(row = 1, column=6)
+        self.player8=tk.Button(self, text = "Select a team first", command = partial(self.dispPlayer,8,Output))
+        self.player8.grid(row = 1, column=2)
+        self.player9=tk.Button(self, text = "Select a team first", command = partial(self.dispPlayer,9,Output))
+        self.player9.grid(row = 1 ,column=3)
+        self.player10=tk.Button(self, text = "Select a team first", command = partial(self.dispPlayer,10,Output))
+        self.player10.grid(row = 1, column=4)
+        self.player11=tk.Button(self, text = "Select a team first", command = partial(self.dispPlayer,11,Output))
+        self.player11.grid(row = 1, column=5)
         
+    def dispStats(self,clicked,Output):
+        for team in T.teams :
+            if team.name==clicked.get():
+                self.t=team
+        self.player1['text']=self.t.players[0].first_name+ ' '+ self.t.players[0].last_name
+        self.player2['text']=self.t.players[1].first_name+ ' '+ self.t.players[1].last_name
+        self.player3['text']=self.t.players[2].first_name+ ' '+ self.t.players[2].last_name
+        self.player4['text']=self.t.players[3].first_name+ ' '+ self.t.players[3].last_name
+        self.player5['text']=self.t.players[4].first_name+ ' '+ self.t.players[4].last_name
+        self.player6['text']=self.t.players[5].first_name+ ' '+ self.t.players[5].last_name
+        self.player7['text']=self.t.players[6].first_name+ ' '+ self.t.players[6].last_name
+        self.player8['text']=self.t.players[7].first_name+ ' '+ self.t.players[7].last_name
+        self.player9['text']=self.t.players[8].first_name+ ' '+ self.t.players[8].last_name
+        self.player10['text']=self.t.players[9].first_name+ ' '+ self.t.players[9].last_name
+        self.player11['text']=self.t.players[10].first_name+ ' '+ self.t.players[10].last_name
+        
+    def dispPlayer(self, num, Output):
+        p=self.t.players[num-1]
+        Output.delete("1.0","end")
+        Output.insert(tk.END,"Name:" + str(p.first_name)+' '+p.last_name+'\n')
+        Output.insert(tk.END,"Age:" + str(p.age)+'\n')
+        Output.insert(tk.END,"Team:" + str(self.t.name)+'\n')
+        Output.insert(tk.END,"Role:" + str(p.role)+'\n')
+        Output.insert(tk.END,"Details:" + str(p.details)+'\n')
+        Output.insert(tk.END,"Runs scored:" + str(p.runs_scored)+'\n')
+        Output.insert(tk.END,"Balls faced:" + str(p.balls_faced)+'\n')
+        Output.insert(tk.END,"Wickets taken:" + str(p.wickets)+'\n')
+        Output.insert(tk.END,"Overs bowled:" + str(p.overs)+'\n')
+        Output.insert(tk.END,"Runs conceded:" + str(p.runs_conceded)+'\n')
+      
 # Driver Code
 app = tkinterApp()
 app.mainloop()

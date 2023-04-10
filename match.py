@@ -108,9 +108,9 @@ class match:
             if(self.team1.wickets_lost>=10):
                 self.over_count=20
         while(self.over_count<40):
-            n=random.choices([i for i in range(11)],weights=(1,1,1,1,0,2,2,4,4,4,4),k=1)[0]
+            n=random.choices([i for i in range(11)],weights=(1,1,1,1,0,4,4,8,8,8,8),k=1)[0]
             while(self.team1.players[n].bowlstats.overs==4):
-                n=random.choices([i for i in range(11)],weights=(1,1,1,1,0,2,2,4,4,4,4),k=1)[0]
+                n=random.choices([i for i in range(11)],weights=(1,1,1,1,0,4,4,8,8,8,8),k=1)[0]
             self.next_over(self.team2,self.team1.players[n])
             if((self.team2.score>self.team1.score) or (self.team2.wickets_lost>=10)):
                 self.over_count=40

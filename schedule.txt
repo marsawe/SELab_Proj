@@ -1,45 +1,45 @@
-15-04-2023, 2200, Arun Jaitley Stadium, Delhi, Delhi Daredevils, Gujarat Lions
-15-04-2023, 2200, M. Chinnaswamy Stadium, Bengaluru, Sydney Sixers, Kolkata Knight Riders
-16-04-2023, 1800, Arun Jaitley Stadium, Delhi, Kings XI Punjab, Melbourne Stars
-16-04-2023, 1800, Sawai Mansingh Stadium, Jaipur, Hobart Hurricanes, Brisbane Heat
-17-04-2023, 2200, Eden Gardens, Kolkata, Deccan Gladiators, Sydney Thunder
-17-04-2023, 2200, Arun Jaitley Stadium, Delhi, Kolkata Knight Riders, Delhi Daredevils
-18-04-2023, 2200, Eden Gardens, Kolkata, Melbourne Stars, Gujarat Lions
-18-04-2023, 2200, Rajiv Gandhi International Cricket Stadium, Hyderabad, Brisbane Heat, Sydney Sixers
-19-04-2023, 2200, Rajiv Gandhi International Cricket Stadium, Hyderabad, Sydney Thunder, Kings XI Punjab
-19-04-2023, 2200, M. A. Chidambaram Stadium, Chennai, Deccan Gladiators, Hobart Hurricanes
-20-04-2023, 2200, Eden Gardens, Kolkata, Delhi Daredevils, Melbourne Stars
-20-04-2023, 2200, Rajiv Gandhi International Cricket Stadium, Hyderabad, Kolkata Knight Riders, Brisbane Heat
-21-04-2023, 2200, Arun Jaitley Stadium, Delhi, Gujarat Lions, Sydney Thunder
-21-04-2023, 2200, M. Chinnaswamy Stadium, Bengaluru, Sydney Sixers, Deccan Gladiators
-22-04-2023, 2200, Wankhede Stadium, Mumbai, Kings XI Punjab, Hobart Hurricanes
-22-04-2023, 2200, M. A. Chidambaram Stadium, Chennai, Brisbane Heat, Delhi Daredevils
-23-04-2023, 2200, Sawai Mansingh Stadium, Jaipur, Sydney Thunder, Melbourne Stars
-23-04-2023, 2200, M. Chinnaswamy Stadium, Bengaluru, Deccan Gladiators, Kolkata Knight Riders
-24-04-2023, 2200, Rajiv Gandhi International Cricket Stadium, Hyderabad, Hobart Hurricanes, Gujarat Lions
-24-04-2023, 2200, Arun Jaitley Stadium, Delhi, Kings XI Punjab, Sydney Sixers
-25-04-2023, 2200, Wankhede Stadium, Mumbai, Delhi Daredevils, Sydney Thunder
-25-04-2023, 2200, Eden Gardens, Kolkata, Brisbane Heat, Deccan Gladiators
-26-04-2023, 2200, Eden Gardens, Kolkata, Melbourne Stars, Hobart Hurricanes
-26-04-2023, 2200, Arun Jaitley Stadium, Delhi, Kolkata Knight Riders, Kings XI Punjab
-27-04-2023, 2200, M. Chinnaswamy Stadium, Bengaluru, Gujarat Lions, Sydney Sixers
-27-04-2023, 2200, Punjab Cricket Association Stadium, Mohali, Deccan Gladiators, Delhi Daredevils
-28-04-2023, 2200, M. Chinnaswamy Stadium, Bengaluru, Hobart Hurricanes, Sydney Thunder
-28-04-2023, 2200, Wankhede Stadium, Mumbai, Kings XI Punjab, Brisbane Heat
-29-04-2023, 2200, Rajiv Gandhi International Cricket Stadium, Hyderabad, Sydney Sixers, Melbourne Stars
-29-04-2023, 2200, Punjab Cricket Association Stadium, Mohali, Gujarat Lions, Kolkata Knight Riders
-30-04-2023, 1800, Rajiv Gandhi International Cricket Stadium, Hyderabad, Delhi Daredevils, Hobart Hurricanes
-30-04-2023, 1800, M. Chinnaswamy Stadium, Bengaluru, Deccan Gladiators, Kings XI Punjab
-01-05-2023, 2200, Arun Jaitley Stadium, Delhi, Sydney Thunder, Sydney Sixers
-01-05-2023, 2200, M. A. Chidambaram Stadium, Chennai, Brisbane Heat, Gujarat Lions
-02-05-2023, 2200, Rajiv Gandhi International Cricket Stadium, Hyderabad, Melbourne Stars, Kolkata Knight Riders
-02-05-2023, 2200, Wankhede Stadium, Mumbai, Kings XI Punjab, Delhi Daredevils
-03-05-2023, 2200, Arun Jaitley Stadium, Delhi, Sydney Sixers, Hobart Hurricanes
-03-05-2023, 2200, M. Chinnaswamy Stadium, Bengaluru, Gujarat Lions, Deccan Gladiators
-04-05-2023, 2200, Arun Jaitley Stadium, Delhi, Kolkata Knight Riders, Sydney Thunder
-04-05-2023, 2200, Sawai Mansingh Stadium, Jaipur, Melbourne Stars, Brisbane Heat
-05-05-2023, 2200, Arun Jaitley Stadium, Delhi, Delhi Daredevils, Sydney Sixers
-05-05-2023, 2200, Punjab Cricket Association Stadium, Mohali, Kings XI Punjab, Gujarat Lions
-06-05-2023, 2200, M. Chinnaswamy Stadium, Bengaluru, Hobart Hurricanes, Kolkata Knight Riders
-06-05-2023, 2200, Eden Gardens, Kolkata, Deccan Gladiators, Melbourne Stars
-07-05-2023, 2200, M. A. Chidambaram Stadium, Chennai, Sydney Thunder, Brisbane Heat
+15-04-2023, 1800, M. Chinnaswamy Stadium, Bengaluru, Gujarat Lions, Rajasthan Royals
+15-04-2023, 1800, Eden Gardens, Kolkata, Jaipur Jaguars, Sunrisers Hyderabad
+16-04-2023, 2200, Arun Jaitley Stadium, Delhi, Royal Challengers Bangalore, Perth Scorchers
+16-04-2023, 2200, M. A. Chidambaram Stadium, Chennai, Adelaide Strikers, Delhi Daredevils
+17-04-2023, 2200, Rajiv Gandhi International Cricket Stadium, Hyderabad, Sydney Sixers, Delhi Capitals
+17-04-2023, 2200, Eden Gardens, Kolkata, Sunrisers Hyderabad, Gujarat Lions
+18-04-2023, 2200, M. Chinnaswamy Stadium, Bengaluru, Perth Scorchers, Rajasthan Royals
+18-04-2023, 2200, Sawai Mansingh Stadium, Jaipur, Delhi Daredevils, Jaipur Jaguars
+19-04-2023, 2200, Rajiv Gandhi International Cricket Stadium, Hyderabad, Delhi Capitals, Royal Challengers Bangalore
+19-04-2023, 2200, Sawai Mansingh Stadium, Jaipur, Sydney Sixers, Adelaide Strikers
+20-04-2023, 2200, Rajiv Gandhi International Cricket Stadium, Hyderabad, Gujarat Lions, Perth Scorchers
+20-04-2023, 2200, Wankhede Stadium, Mumbai, Sunrisers Hyderabad, Delhi Daredevils
+21-04-2023, 2200, Punjab Cricket Association Stadium, Mohali, Rajasthan Royals, Delhi Capitals
+21-04-2023, 2200, M. Chinnaswamy Stadium, Bengaluru, Jaipur Jaguars, Sydney Sixers
+22-04-2023, 2200, Arun Jaitley Stadium, Delhi, Royal Challengers Bangalore, Adelaide Strikers
+22-04-2023, 2200, Rajiv Gandhi International Cricket Stadium, Hyderabad, Delhi Daredevils, Gujarat Lions
+23-04-2023, 2200, Arun Jaitley Stadium, Delhi, Delhi Capitals, Perth Scorchers
+23-04-2023, 2200, Eden Gardens, Kolkata, Sydney Sixers, Sunrisers Hyderabad
+24-04-2023, 2200, Wankhede Stadium, Mumbai, Adelaide Strikers, Rajasthan Royals
+24-04-2023, 2200, Eden Gardens, Kolkata, Royal Challengers Bangalore, Jaipur Jaguars
+25-04-2023, 2200, M. A. Chidambaram Stadium, Chennai, Gujarat Lions, Delhi Capitals
+25-04-2023, 2200, M. Chinnaswamy Stadium, Bengaluru, Delhi Daredevils, Sydney Sixers
+26-04-2023, 2200, Sawai Mansingh Stadium, Jaipur, Perth Scorchers, Adelaide Strikers
+26-04-2023, 2200, Eden Gardens, Kolkata, Sunrisers Hyderabad, Royal Challengers Bangalore
+27-04-2023, 2200, Rajiv Gandhi International Cricket Stadium, Hyderabad, Rajasthan Royals, Jaipur Jaguars
+27-04-2023, 2200, Sawai Mansingh Stadium, Jaipur, Sydney Sixers, Gujarat Lions
+28-04-2023, 2200, Eden Gardens, Kolkata, Adelaide Strikers, Delhi Capitals
+28-04-2023, 2200, Arun Jaitley Stadium, Delhi, Royal Challengers Bangalore, Delhi Daredevils
+29-04-2023, 2200, Arun Jaitley Stadium, Delhi, Jaipur Jaguars, Perth Scorchers
+29-04-2023, 2200, M. Chinnaswamy Stadium, Bengaluru, Rajasthan Royals, Sunrisers Hyderabad
+30-04-2023, 2200, M. A. Chidambaram Stadium, Chennai, Gujarat Lions, Adelaide Strikers
+30-04-2023, 2200, Eden Gardens, Kolkata, Sydney Sixers, Royal Challengers Bangalore
+01-05-2023, 2200, Sawai Mansingh Stadium, Jaipur, Delhi Capitals, Jaipur Jaguars
+01-05-2023, 2200, Arun Jaitley Stadium, Delhi, Delhi Daredevils, Rajasthan Royals
+02-05-2023, 2200, Punjab Cricket Association Stadium, Mohali, Perth Scorchers, Sunrisers Hyderabad
+02-05-2023, 2200, Arun Jaitley Stadium, Delhi, Royal Challengers Bangalore, Gujarat Lions
+03-05-2023, 2200, M. A. Chidambaram Stadium, Chennai, Jaipur Jaguars, Adelaide Strikers
+03-05-2023, 2200, M. Chinnaswamy Stadium, Bengaluru, Rajasthan Royals, Sydney Sixers
+04-05-2023, 2200, Sawai Mansingh Stadium, Jaipur, Sunrisers Hyderabad, Delhi Capitals
+04-05-2023, 2200, M. Chinnaswamy Stadium, Bengaluru, Perth Scorchers, Delhi Daredevils
+05-05-2023, 2200, M. A. Chidambaram Stadium, Chennai, Gujarat Lions, Jaipur Jaguars
+05-05-2023, 2200, M. Chinnaswamy Stadium, Bengaluru, Royal Challengers Bangalore, Rajasthan Royals
+06-05-2023, 1800, Wankhede Stadium, Mumbai, Adelaide Strikers, Sunrisers Hyderabad
+06-05-2023, 1800, Eden Gardens, Kolkata, Sydney Sixers, Perth Scorchers
+07-05-2023, 1800, Rajiv Gandhi International Cricket Stadium, Hyderabad, Delhi Capitals, Delhi Daredevils
