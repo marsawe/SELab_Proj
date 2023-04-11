@@ -1,6 +1,45 @@
-15-04-2023, 2200, Wankhede Stadium, Mumbai, Canberra Calamities, Sunrisers Hyderabad
-15-04-2023, 2200, Rajiv Gandhi International Cricket Stadium, Hyderabad, Pune Panthers, Melbourne Renegades
-16-04-2023, 1800, Sawai Mansingh Stadium, Jaipur, Melbourne Renegades, Canberra Calamities
-16-04-2023, 1800, Arun Jaitley Stadium, Delhi, Pune Panthers, Sunrisers Hyderabad
-17-04-2023, 2200, Wankhede Stadium, Mumbai, Canberra Calamities, Pune Panthers
-17-04-2023, 2200, M. A. Chidambaram Stadium, Chennai, Melbourne Renegades, Sunrisers Hyderabad
+15-04-2023, 1800, Arun Jaitley Stadium, Delhi, Rising Pune Supergiants, Kolkata Knight Riders
+15-04-2023, 1800, M. Chinnaswamy Stadium, Bengaluru, Perth Scorchers, Delhi Daredevils
+16-04-2023, 1800, Eden Gardens, Kolkata, Kochi Tuskers Kerala, Adelaide Strikers
+16-04-2023, 1800, Sawai Mansingh Stadium, Jaipur, Gujarat Lions, Sunrisers Hyderabad
+17-04-2023, 2200, Punjab Cricket Association Stadium, Mohali, Hobart Hurricanes, Royal Challengers Bangalore
+17-04-2023, 2200, Arun Jaitley Stadium, Delhi, Delhi Daredevils, Rising Pune Supergiants
+18-04-2023, 2200, Eden Gardens, Kolkata, Adelaide Strikers, Kolkata Knight Riders
+18-04-2023, 2200, Arun Jaitley Stadium, Delhi, Sunrisers Hyderabad, Perth Scorchers
+19-04-2023, 2200, Sawai Mansingh Stadium, Jaipur, Royal Challengers Bangalore, Kochi Tuskers Kerala
+19-04-2023, 2200, Eden Gardens, Kolkata, Hobart Hurricanes, Gujarat Lions
+20-04-2023, 2200, Wankhede Stadium, Mumbai, Rising Pune Supergiants, Adelaide Strikers
+20-04-2023, 2200, Rajiv Gandhi International Cricket Stadium, Hyderabad, Delhi Daredevils, Sunrisers Hyderabad
+21-04-2023, 2200, M. A. Chidambaram Stadium, Chennai, Kolkata Knight Riders, Royal Challengers Bangalore
+21-04-2023, 2200, Arun Jaitley Stadium, Delhi, Perth Scorchers, Hobart Hurricanes
+22-04-2023, 1800, Punjab Cricket Association Stadium, Mohali, Kochi Tuskers Kerala, Gujarat Lions
+22-04-2023, 1800, Wankhede Stadium, Mumbai, Sunrisers Hyderabad, Rising Pune Supergiants
+23-04-2023, 2200, Punjab Cricket Association Stadium, Mohali, Royal Challengers Bangalore, Adelaide Strikers
+23-04-2023, 2200, Wankhede Stadium, Mumbai, Hobart Hurricanes, Delhi Daredevils
+24-04-2023, 2200, Sawai Mansingh Stadium, Jaipur, Gujarat Lions, Kolkata Knight Riders
+24-04-2023, 2200, Wankhede Stadium, Mumbai, Kochi Tuskers Kerala, Perth Scorchers
+25-04-2023, 2200, Sawai Mansingh Stadium, Jaipur, Rising Pune Supergiants, Royal Challengers Bangalore
+25-04-2023, 2200, M. A. Chidambaram Stadium, Chennai, Sunrisers Hyderabad, Hobart Hurricanes
+26-04-2023, 2200, Wankhede Stadium, Mumbai, Adelaide Strikers, Gujarat Lions
+26-04-2023, 2200, Sawai Mansingh Stadium, Jaipur, Delhi Daredevils, Kochi Tuskers Kerala
+27-04-2023, 2200, M. A. Chidambaram Stadium, Chennai, Kolkata Knight Riders, Perth Scorchers
+27-04-2023, 2200, Eden Gardens, Kolkata, Hobart Hurricanes, Rising Pune Supergiants
+28-04-2023, 2200, M. A. Chidambaram Stadium, Chennai, Gujarat Lions, Royal Challengers Bangalore
+28-04-2023, 2200, M. Chinnaswamy Stadium, Bengaluru, Kochi Tuskers Kerala, Sunrisers Hyderabad
+29-04-2023, 2200, M. Chinnaswamy Stadium, Bengaluru, Perth Scorchers, Adelaide Strikers
+29-04-2023, 2200, Wankhede Stadium, Mumbai, Kolkata Knight Riders, Delhi Daredevils
+30-04-2023, 2200, Punjab Cricket Association Stadium, Mohali, Rising Pune Supergiants, Gujarat Lions
+30-04-2023, 2200, Arun Jaitley Stadium, Delhi, Hobart Hurricanes, Kochi Tuskers Kerala
+01-05-2023, 2200, Sawai Mansingh Stadium, Jaipur, Royal Challengers Bangalore, Perth Scorchers
+01-05-2023, 2200, Wankhede Stadium, Mumbai, Sunrisers Hyderabad, Kolkata Knight Riders
+02-05-2023, 2200, Eden Gardens, Kolkata, Adelaide Strikers, Delhi Daredevils
+02-05-2023, 2200, Sawai Mansingh Stadium, Jaipur, Kochi Tuskers Kerala, Rising Pune Supergiants
+03-05-2023, 2200, M. Chinnaswamy Stadium, Bengaluru, Perth Scorchers, Gujarat Lions
+03-05-2023, 2200, Wankhede Stadium, Mumbai, Kolkata Knight Riders, Hobart Hurricanes
+04-05-2023, 2200, M. Chinnaswamy Stadium, Bengaluru, Delhi Daredevils, Royal Challengers Bangalore
+04-05-2023, 2200, Rajiv Gandhi International Cricket Stadium, Hyderabad, Adelaide Strikers, Sunrisers Hyderabad
+05-05-2023, 2200, Sawai Mansingh Stadium, Jaipur, Rising Pune Supergiants, Perth Scorchers
+05-05-2023, 2200, Rajiv Gandhi International Cricket Stadium, Hyderabad, Kochi Tuskers Kerala, Kolkata Knight Riders
+06-05-2023, 1800, Eden Gardens, Kolkata, Gujarat Lions, Delhi Daredevils
+06-05-2023, 1800, M. A. Chidambaram Stadium, Chennai, Hobart Hurricanes, Adelaide Strikers
+07-05-2023, 1800, Wankhede Stadium, Mumbai, Royal Challengers Bangalore, Sunrisers Hyderabad

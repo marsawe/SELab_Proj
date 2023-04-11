@@ -6,6 +6,7 @@ from functools import partial
 from schedule import Schedule
 from teams import Tournament
 from match import match
+import os
 
 def simulate_match(id):
     # cursor=connector.cursor()
@@ -240,9 +241,16 @@ class mainmenu(tk.Frame) :
         button8.grid(row=6, column=3 , padx=10, pady=10)
         button9=ttk.Button(self,text = " Player Stats ",command = partial(self.transition9, controller),width=15)
         button9.grid(row=7, column=3 , padx=10, pady=10)
+        
+        button10=ttk.Button(self,text = " Exit ",command = partial(self.transition10,self),width=15)
+        button10.grid(row=7, column=0 , padx=10, pady=10)
     
     def parent(self) :
         return self.parent
+    
+    def transition10(self,parent) :
+        parent.destroy()
+        exit()
     
     def click1(self):
         
@@ -384,7 +392,8 @@ class gen_tourn(tk.Frame):
         cursor.execute("create database if not exists cricket")
         cursor.execute("use cricket")
         
-        
+        if os.path.exists("schedule.txt"):
+            os.remove("schedule.txt")
         
         T.load_data()
         T.generate_teams(int(numteams.get()))
@@ -612,12 +621,12 @@ class GuiSchedule(tk.Frame):
         
         headers = ["Match ID", "Date", "Time", "Stadium", "Venue", "Team 1", "Team 2"]
         schedule.insert(tk.END, "{:<10} {:<10} {:<6} {:<52} {:<12} {:<29} {:<29}\n\n".format(*headers))
-
-        with open('schedule.txt', "r") as f:
-            for i, line in enumerate(f, start=1):
-                data = line.strip().split(",")
-                match_id = str(i)
-                schedule.insert(tk.END, "{:<10} {:<10} {:<5} {:<50} {:<10} {:<28} {:<28}\n".format(match_id, *data))
+        if os.path.exists('schedule.txt'):
+            with open('schedule.txt', "r") as f:
+                for i, line in enumerate(f, start=1):
+                    data = line.strip().split(",")
+                    match_id = str(i)
+                    schedule.insert(tk.END, "{:<10} {:<10} {:<5} {:<50} {:<10} {:<28} {:<28}\n".format(match_id, *data))
 
         back = tk.Button(self, text="Back", command=partial(controller.show_frame,mainmenu))
         back.grid(row=2, column=0)
